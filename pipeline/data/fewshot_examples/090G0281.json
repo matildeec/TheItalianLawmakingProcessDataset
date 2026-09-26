@@ -1,0 +1,144 @@
+{
+  "case_id": "090G0281",
+  "text": "Camera dei deputati (atto n. 4686): Presentato dall'on. ORSINI ed altri il 22 marzo 1990. Assegnato alla X commissione (Attività produttive), in sede legislativa, il 10 maggio 1990, con parere della commissione V. Esaminato dalla X commissione il 12 giugno 1990 e approvato il 20 giugno 1990, in un testo unificato con atto n. 4706 (GASPAROTTO ed altri). Senato della Repubblica (atto n. 2342): Assegnato alla 10a commissione (Industria), in sede deliberante, l'11 luglio 1990, con pareri delle commissioni 5a e 13a. Esaminato dalla 10a commissione e approvato il 18 luglio 1990.",
+  "eventi": [
+    {
+      "sequence_id": 1,
+      "numero_atto": "4686",
+      "activity": "presentazione",
+      "date": "1990-03-22",
+      "commissions": [],
+      "sede": null,
+      "persons": [
+        "ORSINI"
+      ],
+      "co_firmatari": true,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 2,
+      "numero_atto": "4686",
+      "activity": "assegnazione",
+      "date": "1990-05-10",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": "legislativa",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 3,
+      "numero_atto": "4686",
+      "activity": "richiesta_parere",
+      "date": "1990-05-10",
+      "commissions": [
+        "COMMISSIONE 5"
+      ],
+      "sede": "consultiva",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 4,
+      "numero_atto": "4686",
+      "activity": "esame_commissione",
+      "date": "1990-06-12",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 5,
+      "numero_atto": "4686",
+      "activity": "approvazione",
+      "date": "1990-06-20",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [
+        "4706"
+      ],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 6,
+      "numero_atto": "2342",
+      "activity": "assegnazione",
+      "date": "1990-07-11",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": "deliberante",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 7,
+      "numero_atto": "2342",
+      "activity": "richiesta_parere",
+      "date": "1990-07-11",
+      "commissions": [
+        "COMMISSIONE 5",
+        "COMMISSIONE 13"
+      ],
+      "sede": "consultiva",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 8,
+      "numero_atto": "2342",
+      "activity": "esame_commissione",
+      "date": "1990-07-18",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 9,
+      "numero_atto": "2342",
+      "activity": "approvazione",
+      "date": "1990-07-18",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    }
+  ]
+}

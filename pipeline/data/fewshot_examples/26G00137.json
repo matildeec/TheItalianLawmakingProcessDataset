@@ -1,0 +1,303 @@
+{
+  "case_id": "26G00137",
+  "text": "Camera dei deputati (atto n. 2920): Presentato dal Presidente del Consiglio dei ministri Giorgia Meloni, dal Ministro delle infrastrutture e dei trasporti Matteo Salvini, (Governo Meloni-I), il 7 maggio 2026. Assegnato alla Commissione VIII (Ambiente, territorio e lavori pubblici), in sede referente, il 7 maggio 2026, con i pareri del Comitato per la legislazione e delle Commissioni I (Affari costituzionali, della Presidenza del Consiglio e Interni), II (Giustizia), V (Bilancio, tesoro e programmazione), VI (Finanze), VII (Cultura, scienza e istruzione), X (Attività produttive, commercio e turismo), XI (Lavoro pubblico e privato), XII (Affari sociali), XIII (Agricoltura), XIV (Politiche dell'Unione europea) e per le Questioni regionali. Esaminato dalla Commissione VIII (Ambiente, territorio e lavori pubblici), in sede referente, il 13 e il 26 maggio 2026, il 3, il 10, il 16, il 17 e il 18 giugno 2026. Esaminato in Aula il 19 e il 22 giugno 2026, e approvato il 23 giugno 2026. Senato della Repubblica (atto n. 1944): Assegnato alla Commissione 8ª (Ambiente, transizione ecologica, energia, lavori pubblici, comunicazioni, innovazione tecnologica) in sede referente, il 23 giugno 2026, con i pareri del Comitato per la legislazione e delle Commissioni 1ª (Affari costituzionali, affari della Presidenza del Consiglio e dell'Interno, ordinamento generale dello Stato e della Pubblica Amministrazione, editoria, digitalizzazione), 2ª (Giustizia), 3ª (Affari esteri e difesa), 4ª (Politiche dell'Unione europea), 5ª (Programmazione economica, bilancio), 6ª (Finanze e tesoro), 7ª (Cultura e patrimonio culturale, istruzione pubblica, ricerca scientifica, spettacolo e sport), 9ª (Industria, commercio, turismo, agricoltura e produzione agroalimentare), 10ª (Affari sociali, sanità, lavoro pubblico e privato, previdenza sociale), e per le Questioni regionali. Esaminato dalla Commissione 8ª (Ambiente, transizione ecologica, energia, lavori pubblici, comunicazioni, innovazione tecnologica), in sede referente, il 24 e il 30 giugno 2026. Esaminato in Aula e approvato, definitivamente, il 1° luglio 2026.",
+  "eventi": [
+    {
+      "sequence_id": 1,
+      "numero_atto": "2920",
+      "activity": "presentazione",
+      "date": "2026-05-07",
+      "commissions": [],
+      "sede": null,
+      "persons": [
+        "GIORGIA MELONI",
+        "MATTEO SALVINI"
+      ],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 2,
+      "numero_atto": "2920",
+      "activity": "assegnazione",
+      "date": "2026-05-07",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 3,
+      "numero_atto": "2920",
+      "activity": "richiesta_parere",
+      "date": "2026-05-07",
+      "commissions": [
+        "COMMISSIONE 1",
+        "COMMISSIONE 2",
+        "COMMISSIONE 5",
+        "COMMISSIONE 6",
+        "COMMISSIONE 7",
+        "COMMISSIONE 10",
+        "COMMISSIONE 11",
+        "COMMISSIONE 12",
+        "COMMISSIONE 13",
+        "COMMISSIONE 14",
+        "COMITATO PER LA LEGISLAZIONE",
+        "COMMISSIONE PARLAMENTARE PER LE QUESTIONI REGIONALI"
+      ],
+      "sede": "consultiva",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 4,
+      "numero_atto": "2920",
+      "activity": "esame_commissione",
+      "date": "2026-05-13",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 5,
+      "numero_atto": "2920",
+      "activity": "esame_commissione",
+      "date": "2026-05-26",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 6,
+      "numero_atto": "2920",
+      "activity": "esame_commissione",
+      "date": "2026-06-03",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 7,
+      "numero_atto": "2920",
+      "activity": "esame_commissione",
+      "date": "2026-06-10",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 8,
+      "numero_atto": "2920",
+      "activity": "esame_commissione",
+      "date": "2026-06-16",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 9,
+      "numero_atto": "2920",
+      "activity": "esame_commissione",
+      "date": "2026-06-17",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 10,
+      "numero_atto": "2920",
+      "activity": "esame_commissione",
+      "date": "2026-06-18",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 11,
+      "numero_atto": "2920",
+      "activity": "esame_aula",
+      "date": "2026-06-19",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 12,
+      "numero_atto": "2920",
+      "activity": "esame_aula",
+      "date": "2026-06-22",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 13,
+      "numero_atto": "2920",
+      "activity": "approvazione",
+      "date": "2026-06-23",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 14,
+      "numero_atto": "1944",
+      "activity": "assegnazione",
+      "date": "2026-06-23",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 15,
+      "numero_atto": "1944",
+      "activity": "richiesta_parere",
+      "date": "2026-06-23",
+      "commissions": [
+        "COMMISSIONE 1",
+        "COMMISSIONE 2",
+        "COMMISSIONE 3",
+        "COMMISSIONE 4",
+        "COMMISSIONE 5",
+        "COMMISSIONE 6",
+        "COMMISSIONE 7",
+        "COMMISSIONE 9",
+        "COMMISSIONE 10",
+        "COMITATO PER LA LEGISLAZIONE",
+        "COMMISSIONE PARLAMENTARE PER LE QUESTIONI REGIONALI"
+      ],
+      "sede": "consultiva",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 16,
+      "numero_atto": "1944",
+      "activity": "esame_commissione",
+      "date": "2026-06-24",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 17,
+      "numero_atto": "1944",
+      "activity": "esame_commissione",
+      "date": "2026-06-30",
+      "commissions": [
+        "COMMISSIONE 8"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 18,
+      "numero_atto": "1944",
+      "activity": "esame_aula",
+      "date": "2026-07-01",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 19,
+      "numero_atto": "1944",
+      "activity": "approvazione",
+      "date": "2026-07-01",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    }
+  ]
+}

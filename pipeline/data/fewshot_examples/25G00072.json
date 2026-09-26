@@ -1,0 +1,330 @@
+{
+  "case_id": "25G00072",
+  "text": "Senato della Repubblica (atto n. 1184-bis): Presentato dal Ministro per la Pubblica amministrazione, Paolo Zangrillo e dalla Ministra per le Riforme istituzionali e la semplificazione normativa, Maria Elisabetta Alberti Casellati, (Governo Meloni-I), l'11 settembre 2024, risultante dallo stralcio dell'art. 23 dell'atto Senato 1184, deliberato nella seduta n. 218 dell'11 settembre 2024. Assegnato alla 10ª Commissione (Affari sociali, sanità, lavoro pubblico e privato, previdenza sociale), in sede redigente, il 12 settembre 2024, con i pareri delle Commissioni 1ª (Affari costituzionali, affari della Presidenza del Consiglio e dell'Interno, ordinamento generale dello Stato e della Pubblica Amministrazione, editoria, digitalizzazione), 5ª (Programmazione economica, bilancio) e 8ª (Ambiente, transizione ecologica, energia, lavori pubblici, comunicazioni, innovazione tecnologica). Esaminato dalla 10ª Commissione (Affari sociali, sanità, lavoro pubblico e privato, previdenza sociale), in sede redigente, il 24 settembre 2024, il 2 e il 22 ottobre 2024. Esaminato in Aula e approvato il 19 novembre 2024. Camera dei deputati: (atto n. 2142): Assegnato alla XII Commissione (Affari sociali), in sede referente, il 26 novembre 2024, con i pareri delle Commissioni I (Affari costituzionali, della Presidenza del Consiglio e interni), V (Bilancio, Tesoro e Programmazione), IX (Trasporti, poste e telecomunicazioni) e XI (Lavoro pubblico e privato). Esaminato dalla XII Commissione (Affari sociali), in sede referente, l'11 dicembre 2024; l'8 e il 29 gennaio 2025 e il 5 marzo 2025. Esaminato in Aula il 10 marzo 2025 e approvato il 25 marzo 2025. Senato della Repubblica (atto n. 1184-bis-B): Assegnato alla 10ª Commissione (Affari sociali, sanità, lavoro pubblico e privato, previdenza sociale), in sede redigente, il 27 marzo 2025, con i pareri delle Commissioni 1ª (Affari costituzionali, affari della Presidenza del Consiglio e dell'Interno, ordinamento generale dello Stato e della Pubblica Amministrazione, editoria, digitalizzazione), 5ª (Programmazione economica, bilancio) e 8ª (Ambiente, transizione ecologica, energia, lavori pubblici, comunicazioni, innovazione tecnologica). Esaminato dalla 10ª Commissione (Affari sociali, sanità, lavoro pubblico e privato, previdenza sociale), in sede redigente, il 2 aprile 2025. Esaminato in Aula e approvato definitivamente il 16 aprile 2025.",
+  "eventi": [
+    {
+      "sequence_id": 1,
+      "numero_atto": "1184-bis",
+      "activity": "presentazione",
+      "date": "2024-09-11",
+      "commissions": [],
+      "sede": null,
+      "persons": [
+        "PAOLO ZANGRILLO",
+        "MARIA ELISABETTA ALBERTI CASELLATI"
+      ],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 2,
+      "numero_atto": "1184-bis",
+      "activity": "stralcio",
+      "date": "2024-09-11",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 3,
+      "numero_atto": "1184-bis",
+      "activity": "assegnazione",
+      "date": "2024-09-12",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": "redigente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 4,
+      "numero_atto": "1184-bis",
+      "activity": "richiesta_parere",
+      "date": "2024-09-12",
+      "commissions": [
+        "COMMISSIONE 1",
+        "COMMISSIONE 5",
+        "COMMISSIONE 8"
+      ],
+      "sede": "consultiva",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 5,
+      "numero_atto": "1184-bis",
+      "activity": "esame_commissione",
+      "date": "2024-09-24",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": "redigente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 6,
+      "numero_atto": "1184-bis",
+      "activity": "esame_commissione",
+      "date": "2024-10-02",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": "redigente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 7,
+      "numero_atto": "1184-bis",
+      "activity": "esame_commissione",
+      "date": "2024-10-22",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": "redigente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 8,
+      "numero_atto": "1184-bis",
+      "activity": "esame_aula",
+      "date": "2024-11-19",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 9,
+      "numero_atto": "1184-bis",
+      "activity": "approvazione",
+      "date": "2024-11-19",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 10,
+      "numero_atto": "2142",
+      "activity": "assegnazione",
+      "date": "2024-11-26",
+      "commissions": [
+        "COMMISSIONE 12"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 11,
+      "numero_atto": "2142",
+      "activity": "richiesta_parere",
+      "date": "2024-11-26",
+      "commissions": [
+        "COMMISSIONE 1",
+        "COMMISSIONE 5",
+        "COMMISSIONE 9",
+        "COMMISSIONE 11"
+      ],
+      "sede": "consultiva",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 12,
+      "numero_atto": "2142",
+      "activity": "esame_commissione",
+      "date": "2024-12-11",
+      "commissions": [
+        "COMMISSIONE 12"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 13,
+      "numero_atto": "2142",
+      "activity": "esame_commissione",
+      "date": "2025-01-08",
+      "commissions": [
+        "COMMISSIONE 12"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 14,
+      "numero_atto": "2142",
+      "activity": "esame_commissione",
+      "date": "2025-01-29",
+      "commissions": [
+        "COMMISSIONE 12"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 15,
+      "numero_atto": "2142",
+      "activity": "esame_commissione",
+      "date": "2025-03-05",
+      "commissions": [
+        "COMMISSIONE 12"
+      ],
+      "sede": "referente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 16,
+      "numero_atto": "2142",
+      "activity": "esame_aula",
+      "date": "2025-03-10",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 17,
+      "numero_atto": "2142",
+      "activity": "approvazione",
+      "date": "2025-03-25",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "camera"
+    },
+    {
+      "sequence_id": 18,
+      "numero_atto": "1184-bis-B",
+      "activity": "assegnazione",
+      "date": "2025-03-27",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": "redigente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 19,
+      "numero_atto": "1184-bis-B",
+      "activity": "richiesta_parere",
+      "date": "2025-03-27",
+      "commissions": [
+        "COMMISSIONE 1",
+        "COMMISSIONE 5",
+        "COMMISSIONE 8"
+      ],
+      "sede": "consultiva",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 20,
+      "numero_atto": "1184-bis-B",
+      "activity": "esame_commissione",
+      "date": "2025-04-02",
+      "commissions": [
+        "COMMISSIONE 10"
+      ],
+      "sede": "redigente",
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 21,
+      "numero_atto": "1184-bis-B",
+      "activity": "esame_aula",
+      "date": "2025-04-16",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    },
+    {
+      "sequence_id": 22,
+      "numero_atto": "1184-bis-B",
+      "activity": "approvazione",
+      "date": "2025-04-16",
+      "commissions": [],
+      "sede": null,
+      "persons": [],
+      "co_firmatari": false,
+      "con_modificazioni": false,
+      "atti_unificati": [],
+      "chamber": "senato"
+    }
+  ]
+}
