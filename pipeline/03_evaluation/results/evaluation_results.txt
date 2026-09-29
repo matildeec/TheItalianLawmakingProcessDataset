@@ -1,0 +1,20 @@
+[INFO] Terminal output will also be saved to: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.txt
+usage: run_evaluation.py [-h] [--input [INPUT ...]] [--gold GOLD]
+                         [--mode {raw}] [--threshold THRESHOLD] [--force]
+
+Iter Legis - Central Evaluation Orchestrator (LLM Output Validation against
+Gold Standard)
+
+options:
+  -h, --help            show this help message and exit
+  --input [INPUT ...]   Inference JSONL output file(s) to evaluate.
+  --gold GOLD           Gold Standard file path. Default: /Users/matilde/Deskt
+                        op/git/TheItalianLawmakingProcessDataset/pipeline/data
+                        /gold_standard.json
+  --mode {raw}          Evaluation mode: validate raw model extraction output.
+                        Default: raw
+  --threshold THRESHOLD
+                        Similarity threshold for the Hungarian Algorithm.
+                        Default: 0.8
+  --force, --overwrite  Force re-evaluation even if the model already exists
+                        in output results.

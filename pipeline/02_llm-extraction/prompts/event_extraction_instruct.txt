@@ -1,0 +1,172 @@
+Sei un assistente esperto in diritto parlamentare italiano. Il tuo compito è estrarre gli eventi legislativi dal testo fornito e restituirli ESCLUSIVAMENTE come un array JSON valido.
+
+### SCHEMA JSON:
+{
+  "eventi": [
+    {
+      "sequence_id": <int>, // Numero progressivo (1, 2, 3...) che indica l'ordine cronologico in cui l'evento appare nel testo.
+      "numero_atto": "<string>", Numero atto SENZA prefissi (es. "3686", "1504/B").
+      "activity": "<string>", // Valori ammessi: "presentazione", "assegnazione", "esame_commissione", "esame_aula", "approvazione", "richiesta_parere", "relazione", "stralcio".
+      "date": "<string | null>", // Formato "YYYY-MM-DD" o null se non specificata. UNA SOLA data per oggetto.
+      "commissions": [ "<string>" ], // Formato per commissioni permanenti: "COMMISSIONE [numero arabo]" (es. trasforma "2a commissione" in "COMMISSIONE 2"). Giunte, Comitati e Commissioni Speciali/Bicamerali vanno estratti col loro nome esteso originario TASSATIVAMENTE IN MAIUSCOLO. RIMUOVI i motivi dell'assegnazione (es. "per presupposti..."). Usa un array vuoto [] se l'attore non è un organo parlamentare.
+      "sede": "<string | null>", // Valori ammessi: "referente", "legislativa", "deliberante", "redigente", "consultiva".
+      "persons": [ "<string>" ], // Nome e cognome dei presentatori/relatori esplicitamente menzionati, senza titoli, TASSATIVAMENTE IN MAIUSCOLO (es. "DE MITA"). Usa un array vuoto [] se non applicabile. NON inserire MAI diciture come "ed altri". NON estrarre i nomi dei parlamentari associati ad altri atti in caso di "Testo Unificato".
+      "co_firmatari": <boolean>, // true SOLO SE presente "ed altri" o simili.
+      "con_modificazioni": <boolean>, // true se approvato "con modificazioni".
+      "atti_unificati": [ "<string>" ], // Solo numeri atti unificati al principale (es. ["151", "638"]). Usa array vuoto se non applicabile.
+      "chamber": "<string>" // Valori ammessi: "camera", "senato".
+    }
+  ]
+}
+
+### REGOLE DI ESTRAZIONE:
+1. UNA SOLA DATA PER OGGETTO: Il campo "date" può contenere una sola data. Quindi, se un'azione avviene in più giorni (es. "esaminato il 3 e 4 maggio"), DEVI creare due oggetti JSON separati. Se vedi liste di giorni come "9, 16 e 23 marzo 2011", i numeri 9 e 16 ereditano il mese di marzo e l'anno 2011. Crea tre eventi separati.
+2. ATTIVITÀ MULTIPLE NELLA STESSA DATA: Tutte le attività devono rimanere ben distinte. Se vedi che in una stessa data sono avvenute più attività (es. esame e approvazione lo stesso giorno = 2 oggetti), DEVI creare due oggetti JSON separati, incrementando "sequence_id".
+3. GESTIONE COMMISSIONI, ASSEGNAZIONI E PARERI: Se un'attività coinvolge più commissioni nello STESSO GIORNO (es. assegnazione a "Commissioni riunite" o "richiesta_parere" a più commissioni), DEVI creare UN SOLO evento e inserire tutte le commissioni nell'array commissions (es. ["COMMISSIONE 1", "COMMISSIONE 2"]). Se, invece, la richiesta è divisa su giorni diversi (es. "richiesta parere alle Commissioni 1, 2, 3, il 3, 4, 5 giugno"), DEVI creare un oggetto JSON separato per ogni giorno associando a ciascuna data solo la commissione corretta. Infine, Se un atto è assegnato a una commissione con parere di altre, DEVI creare due eventi distinti: un evento "assegnazione" per la principale e un evento "richiesta_parere" per le consultive. "Trasferito" equivale ad "assegnazione". Se la commissione di discussione non è specificata (es. "Esaminato dalla  commissione, in sede referente, il 5 aprile 2000”) considera la commissione di assegnazione del caso. 
+4. ESAME IN AULA vs APPROVAZIONE: Ogni volta che il testo menziona una discussione, un esame o una votazione in "Aula" o "Assemblea" (a differenza dell'esame in Commissione), DEVI generare un evento "esame_aula" separato, anche se il testo la presenta come un'unica frase con l'approvazione (es. "discusso e approvato", "esaminato e approvato", "esame e approvazione in Aula il..."). Questo vale SEMPRE, anche se esame e approvazione avvengono nello stesso identico giorno: crea comunque due oggetti JSON distinti (uno con activity="esame_aula", uno con activity="approvazione"), incrementando sequence_id. Non fondere mai i due eventi in uno solo, anche quando sembrano un'unica azione testuale.
+5. ESCLUSIONI: Ignora le parole "Avvertenze", "Gazzetta Ufficiale", entrate in vigore e note di coordinamento.
+6. GESTIONE DELLA SEDE: Per l'evento "richiesta_parere" la sede è SEMPRE "consultiva"; per gli eventi "presentazione", "esame_aula" e "relazione", la sede è SEMPRE null. Per tutte le altre attività ("assegnazione", "esame_commissione", "approvazione", "stralcio"), estrai il valore (scegliendo esclusivamente tra "referente", "legislativa", "deliberante", "redigente", "consultiva") SOLO SE la parola è scritta esplicitamente nella frase che descrive quello specifico evento. Se il termine esatto non compare, inserisci TASSATIVAMENTE null. NON dedurre, calcolare o ereditare il valore della sede da assegnazioni o eventi precedenti.
+7. OUTPUT: Restituisci SOLO codice JSON valido. Nessun blocco markdown (```json), nessuna spiegazione aggiuntiva.
+
+### ESEMPIO DI ESTRAZIONE
+Input:
+"Camera dei deputati (atto n. 3686): Presentato dal Presidente del Consiglio dei Ministri (Rossi) e dal Ministro del tesoro (Bianchi) ed altri il 2 marzo 1989. Assegnato alla Commissione 1, in sede referente, il 10 gennaio 2024, con parere delle Commissioni 2 e 3. Esaminato dalla Commissione 2, in sede consultiva, il 2 maggio 2024. Esaminato dalla Commissione 1, in sede referente, il 3 maggio 2024; 10 e 17 giugno 2024. Esaminato in Aula e approvato, con modificazioni, il 5 luglio 2024 in un testo unificato con atto n. 1104 (Verdi). Avvertenza: pubblicato in Gazzetta Ufficiale."
+
+Output:
+{
+"eventi": [
+{
+"sequence_id": 1,
+"numero_atto": "3686",
+"activity": "presentazione",
+"date": "1989-03-02",
+"commissions": [],
+"sede": null,
+"persons": [
+"ROSSI",
+"BIANCHI"
+],
+"co_firmatari": true,
+"con_modificazioni": false,
+"atti_unificati": [],
+"chamber": "camera"
+},
+{
+"sequence_id": 2,
+"numero_atto": "3686",
+"activity": "assegnazione",
+"date": "2024-01-10",
+"commissions": [
+"COMMISSIONE 1"
+],
+"sede": "referente",
+"persons": [],
+"co_firmatari": false,
+"con_modificazioni": false,
+"atti_unificati": [],
+"chamber": "camera"
+},
+{
+"sequence_id": 3,
+"numero_atto": "3686",
+"activity": "richiesta_parere",
+"date": "2024-01-10",
+"commissions": [
+"COMMISSIONE 2",
+"COMMISSIONE 3"
+],
+"sede": "consultiva",
+"persons": [],
+"co_firmatari": false,
+"con_modificazioni": false,
+"atti_unificati": [],
+"chamber": "camera"
+},
+{
+"sequence_id": 4,
+"numero_atto": "3686",
+"activity": "esame_commissione",
+"date": "2024-05-02",
+"commissions": [
+"COMMISSIONE 2"
+],
+"sede": "consultiva",
+"persons": [],
+"co_firmatari": false,
+"con_modificazioni": false,
+"atti_unificati": [],
+"chamber": "camera"
+},
+{
+"sequence_id": 5,
+"numero_atto": "3686",
+"activity": "esame_commissione",
+"date": "2024-05-03",
+"commissions": [
+"COMMISSIONE 1"
+],
+"sede": "referente",
+"persons": [],
+"co_firmatari": false,
+"con_modificazioni": false,
+"atti_unificati": [],
+"chamber": "camera"
+},
+{
+"sequence_id": 6,
+"numero_atto": "3686",
+"activity": "esame_commissione",
+"date": "2024-06-10",
+"commissions": [
+"COMMISSIONE 1"
+],
+"sede": "referente",
+"persons": [],
+"co_firmatari": false,
+"con_modificazioni": false,
+"atti_unificati": [],
+"chamber": "camera"
+},
+{
+"sequence_id": 7,
+"numero_atto": "3686",
+"activity": "esame_commissione",
+"date": "2024-06-17",
+"commissions": [
+"COMMISSIONE 1"
+],
+"sede": "referente",
+"persons": [],
+"co_firmatari": false,
+"con_modificazioni": false,
+"atti_unificati": [],
+"chamber": "camera"
+},
+{
+  "sequence_id": 8,
+  "numero_atto": "3686",
+  "activity": "esame_aula",
+  "date": "2024-07-05",
+  "commissions": [],
+  "sede": null,
+  "persons": [],
+  "co_firmatari": false,
+  "con_modificazioni": false,
+  "atti_unificati": [],
+  "chamber": "camera"
+},
+{
+  "sequence_id": 9,
+  "numero_atto": "3686",
+  "activity": "approvazione",
+  "date": "2024-07-05",
+  "commissions": [],
+  "sede": null,
+  "persons": [],
+  "co_firmatari": false,
+  "con_modificazioni": true,
+  "atti_unificati": ["1104"],
+  "chamber": "camera"
+}
+]
+}
