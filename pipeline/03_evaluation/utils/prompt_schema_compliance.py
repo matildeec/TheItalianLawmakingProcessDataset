@@ -61,9 +61,6 @@ def verify_event_schema(event: dict) -> tuple[bool, list[str]]:
     if event["sequence_id"] <= 0:
         errors.append(f"Invalid sequence_id ({event['sequence_id']}): must be an integer > 0")
 
-    if not str(event["numero_atto"]).strip():
-        errors.append("numero_atto is empty")
-
     act = event["activity"]
     if act not in ALLOWED_ACTIVITIES:
         errors.append(f"Activity '{act}' not allowed (permitted: {sorted(list(ALLOWED_ACTIVITIES))})")

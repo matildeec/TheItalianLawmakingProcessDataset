@@ -85,21 +85,35 @@ python 03_evaluation/run_evaluation.py --input output/full_raw_extraction_gemma4
 python 03_evaluation/run_evaluation.py --force
 ```
 
-### Phase 4: Post-Processing & Canonical Normalization (`04_post-processing`)
+### Phase 4: Post-Processing, Error Detection & Dataset Consolidation (`04_post-processing`)
 
-Applies deterministic sanitization, normalizes procedural fields, and translates the schema into canonical English identifiers:
+Applies deterministic sanitization, normalizes procedural fields, runs rule-based error detection, and consolidates the final two-layer dataset published in `/dataset/`:
 
-- Cleans bill numbers and strips non-canonical prefixes.
-- Maps Italian activity types (`presentazione`, `assegnazione`, `esame_commissione`, etc.) to canonical English labels (`presentation`, `assignment`, `committee_examination`, etc.).
-- Maps procedural modes (`referente`, `deliberante`, etc.) to standard English representations (`referral`, `deliberative`, etc.).
-- Standardizes parliamentary committees, parliamentary organs, and sponsor names.
+1. **Deterministic Sanitization & Ontology Normalization (`postprocess_results.py`)**:
+   - Maps Italian activity types (`presentazione`, `assegnazione`, etc.) to canonical English labels (`presentation`, `assignment`, etc.).
+   - Standardizes procedural modes (`referral`, `deliberative`, etc.) and parliamentary chambers.
+   - Canonicalizes parliamentary committee names (`COMMISSIONE X`) and strips titles/spurious phrases from sponsor names.
 
-Execution command:
+2. **Error Detection & Quality Audit (`error_detection/flag.py`)**:
+   - Audits chronological monotonicity, sequence order, and domain constraints across event logs.
+   - Flags critical anomalies (temporal inversions, sequence-date mismatches, unauthorized approvals).
+   - Generates `flagged_cases.jsonl` which is used to populate the `suspicious: true/false` quality audit flag.
 
-```bash
-# Run deterministic post-processing on the full extraction
-python 04_post-processing/postprocess_results.py output/full_raw_extraction_gemma4.jsonl output/full_clean_extraction_gemma4.jsonl
-```
+   ```bash
+   python 04_post-processing/error_detection/flag.py --input output/full_raw_extraction_gemma4.jsonl
+   ```
+
+3. **Master Dataset Export**:
+   - Builds `dataset/bill-registry.csv` (consolidates 44,980 legislative bill initiatives across Legislatures 9–19 with 22 institutional metadata fields).
+   - Builds `dataset/preparatory-work.jsonl` (merges the 5,246 model extractions with the 100 human-annotated Gold Standard bills, applies ontology translation, and appends the `suspicious` flag).
+
+   ```bash
+   # Consolidate bill initiatives and legislative metadata into the master registry
+   python 04_post-processing/build_master_bill_registry.py
+
+   # Build the finalized preparatory works event log
+   python 04_post-processing/build_preparatory_work.py
+   ```
 
 ---
 

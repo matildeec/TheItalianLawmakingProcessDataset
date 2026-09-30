@@ -8,9 +8,10 @@ tqdm>=4.65.0
 tiktoken>=0.5.0
 tokenizers>=0.15.0
 
-# LLM Inference (Phase 2)
+# LLM Inference Runtime (Phase 2)
 ollama>=0.3.0
+pydantic>=2.0.0
 
-# Evaluation, Embedding Similarity & Matching (Phase 3)
+# Evaluation, Semantic Embeddings & Bipartite Matching (Phase 3)
 torch>=2.0.0
 sentence-transformers>=2.2.0

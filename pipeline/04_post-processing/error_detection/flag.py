@@ -395,10 +395,10 @@ def check_unauthorized_approval(
     if not events:
         return anomalies
 
-    # Track state per (numero_atto, chamber)
-    act_chamber_states: Dict[tuple, Dict[str, bool]] = {}
+    # Track state per chamber
+    act_chamber_states: Dict[str, Dict[str, bool]] = {}
 
-    def get_state(key: tuple) -> Dict[str, bool]:
+    def get_state(key: str) -> Dict[str, bool]:
         if key not in act_chamber_states:
             act_chamber_states[key] = {
                 "examined_comm": False,
@@ -411,9 +411,8 @@ def check_unauthorized_approval(
         act = str(ev.get("activity", "")).strip()
         raw_chamber = ev.get("chamber")
         chamber = str(raw_chamber).strip().lower() if raw_chamber is not None else "unknown"
-        num_atto = str(ev.get("numero_atto", "")).strip()
 
-        state = get_state((num_atto, chamber))
+        state = get_state(chamber)
 
         if act == "esame_commissione":
             state["examined_comm"] = True
@@ -437,7 +436,7 @@ def check_unauthorized_approval(
                         event_activity=act,
                         event_date=ev.get("date"),
                         chamber=chamber,
-                        details={"numero_atto": num_atto, "chamber": chamber},
+                        details={"chamber": chamber},
                     )
                 )
 

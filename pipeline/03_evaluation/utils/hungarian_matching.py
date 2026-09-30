@@ -32,11 +32,9 @@ def event_to_text(ev: dict) -> str:
     chamber = ev.get("chamber") or "non specificata"
     commissions = ", ".join(ev.get("commissions") or []) or "nessuna"
     persons = ", ".join(ev.get("persons") or []) or "nessuno"
-    num_atto = ev.get("numero_atto") or "non specificato"
     sede = ev.get("sede") or "non specificata"
 
     parts = [
-        f"Atto numero {num_atto}",
         f"Attività {activity}",
         f"Data {date}",
         f"Camera {chamber}",

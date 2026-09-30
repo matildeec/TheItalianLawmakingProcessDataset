@@ -50,7 +50,6 @@ SENTENCE_TRANSFORMER_MODEL = "sentence-transformers/paraphrase-multilingual-Mini
 # ==============================================================================
 REQUIRED_SCHEMA = {
     "sequence_id": int,
-    "numero_atto": str,
     "activity": str,
     "date": (str, type(None)),
     "commissions": list,

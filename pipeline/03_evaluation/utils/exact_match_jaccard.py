@@ -8,7 +8,6 @@ import numpy as np
 from scipy.optimize import linear_sum_assignment
 
 DOMAIN_ATTRIBUTES = [
-    "numero_atto",
     "activity",
     "date",
     "commissions",
@@ -29,7 +28,6 @@ def canonicalize_event(event: dict, include_sequence_id: bool = False) -> tuple:
     if not isinstance(event, dict):
         return ()
 
-    num_atto = str(event.get("bill_id") or event.get("numero_atto", "")).strip()
     activity = str(event.get("activity", "")).strip().lower()
     date = str(event.get("date")).strip() if event.get("date") is not None else None
     
@@ -49,7 +47,6 @@ def canonicalize_event(event: dict, include_sequence_id: bool = False) -> tuple:
         seq_id = int(event.get("sequence_id", 0))
         return (
             seq_id,
-            num_atto,
             activity,
             date,
             commissions,
@@ -62,7 +59,6 @@ def canonicalize_event(event: dict, include_sequence_id: bool = False) -> tuple:
         )
     else:
         return (
-            num_atto,
             activity,
             date,
             commissions,

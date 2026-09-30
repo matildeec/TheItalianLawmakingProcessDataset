@@ -4,7 +4,6 @@
   "eventi": [
     {
       "sequence_id": 1,
-      "numero_atto": "1184-bis",
       "activity": "presentazione",
       "date": "2024-09-11",
       "commissions": [],
@@ -20,7 +19,6 @@
     },
     {
       "sequence_id": 2,
-      "numero_atto": "1184-bis",
       "activity": "stralcio",
       "date": "2024-09-11",
       "commissions": [],
@@ -33,7 +31,6 @@
     },
     {
       "sequence_id": 3,
-      "numero_atto": "1184-bis",
       "activity": "assegnazione",
       "date": "2024-09-12",
       "commissions": [
@@ -48,7 +45,6 @@
     },
     {
       "sequence_id": 4,
-      "numero_atto": "1184-bis",
       "activity": "richiesta_parere",
       "date": "2024-09-12",
       "commissions": [
@@ -65,7 +61,6 @@
     },
     {
       "sequence_id": 5,
-      "numero_atto": "1184-bis",
       "activity": "esame_commissione",
       "date": "2024-09-24",
       "commissions": [
@@ -80,7 +75,6 @@
     },
     {
       "sequence_id": 6,
-      "numero_atto": "1184-bis",
       "activity": "esame_commissione",
       "date": "2024-10-02",
       "commissions": [
@@ -95,7 +89,6 @@
     },
     {
       "sequence_id": 7,
-      "numero_atto": "1184-bis",
       "activity": "esame_commissione",
       "date": "2024-10-22",
       "commissions": [
@@ -110,7 +103,6 @@
     },
     {
       "sequence_id": 8,
-      "numero_atto": "1184-bis",
       "activity": "esame_aula",
       "date": "2024-11-19",
       "commissions": [],
@@ -123,7 +115,6 @@
     },
     {
       "sequence_id": 9,
-      "numero_atto": "1184-bis",
       "activity": "approvazione",
       "date": "2024-11-19",
       "commissions": [],
@@ -136,7 +127,6 @@
     },
     {
       "sequence_id": 10,
-      "numero_atto": "2142",
       "activity": "assegnazione",
       "date": "2024-11-26",
       "commissions": [
@@ -151,7 +141,6 @@
     },
     {
       "sequence_id": 11,
-      "numero_atto": "2142",
       "activity": "richiesta_parere",
       "date": "2024-11-26",
       "commissions": [
@@ -169,7 +158,6 @@
     },
     {
       "sequence_id": 12,
-      "numero_atto": "2142",
       "activity": "esame_commissione",
       "date": "2024-12-11",
       "commissions": [
@@ -184,7 +172,6 @@
     },
     {
       "sequence_id": 13,
-      "numero_atto": "2142",
       "activity": "esame_commissione",
       "date": "2025-01-08",
       "commissions": [
@@ -199,7 +186,6 @@
     },
     {
       "sequence_id": 14,
-      "numero_atto": "2142",
       "activity": "esame_commissione",
       "date": "2025-01-29",
       "commissions": [
@@ -214,7 +200,6 @@
     },
     {
       "sequence_id": 15,
-      "numero_atto": "2142",
       "activity": "esame_commissione",
       "date": "2025-03-05",
       "commissions": [
@@ -229,7 +214,6 @@
     },
     {
       "sequence_id": 16,
-      "numero_atto": "2142",
       "activity": "esame_aula",
       "date": "2025-03-10",
       "commissions": [],
@@ -242,7 +226,6 @@
     },
     {
       "sequence_id": 17,
-      "numero_atto": "2142",
       "activity": "approvazione",
       "date": "2025-03-25",
       "commissions": [],
@@ -255,7 +238,6 @@
     },
     {
       "sequence_id": 18,
-      "numero_atto": "1184-bis-B",
       "activity": "assegnazione",
       "date": "2025-03-27",
       "commissions": [
@@ -270,7 +252,6 @@
     },
     {
       "sequence_id": 19,
-      "numero_atto": "1184-bis-B",
       "activity": "richiesta_parere",
       "date": "2025-03-27",
       "commissions": [
@@ -287,7 +268,6 @@
     },
     {
       "sequence_id": 20,
-      "numero_atto": "1184-bis-B",
       "activity": "esame_commissione",
       "date": "2025-04-02",
       "commissions": [
@@ -302,7 +282,6 @@
     },
     {
       "sequence_id": 21,
-      "numero_atto": "1184-bis-B",
       "activity": "esame_aula",
       "date": "2025-04-16",
       "commissions": [],
@@ -315,7 +294,6 @@
     },
     {
       "sequence_id": 22,
-      "numero_atto": "1184-bis-B",
       "activity": "approvazione",
       "date": "2025-04-16",
       "commissions": [],

@@ -4,7 +4,6 @@
   "eventi": [
     {
       "sequence_id": 1,
-      "numero_atto": "2920",
       "activity": "presentazione",
       "date": "2026-05-07",
       "commissions": [],
@@ -20,7 +19,6 @@
     },
     {
       "sequence_id": 2,
-      "numero_atto": "2920",
       "activity": "assegnazione",
       "date": "2026-05-07",
       "commissions": [
@@ -35,7 +33,6 @@
     },
     {
       "sequence_id": 3,
-      "numero_atto": "2920",
       "activity": "richiesta_parere",
       "date": "2026-05-07",
       "commissions": [
@@ -61,7 +58,6 @@
     },
     {
       "sequence_id": 4,
-      "numero_atto": "2920",
       "activity": "esame_commissione",
       "date": "2026-05-13",
       "commissions": [
@@ -76,7 +72,6 @@
     },
     {
       "sequence_id": 5,
-      "numero_atto": "2920",
       "activity": "esame_commissione",
       "date": "2026-05-26",
       "commissions": [
@@ -91,7 +86,6 @@
     },
     {
       "sequence_id": 6,
-      "numero_atto": "2920",
       "activity": "esame_commissione",
       "date": "2026-06-03",
       "commissions": [
@@ -106,7 +100,6 @@
     },
     {
       "sequence_id": 7,
-      "numero_atto": "2920",
       "activity": "esame_commissione",
       "date": "2026-06-10",
       "commissions": [
@@ -121,7 +114,6 @@
     },
     {
       "sequence_id": 8,
-      "numero_atto": "2920",
       "activity": "esame_commissione",
       "date": "2026-06-16",
       "commissions": [
@@ -136,7 +128,6 @@
     },
     {
       "sequence_id": 9,
-      "numero_atto": "2920",
       "activity": "esame_commissione",
       "date": "2026-06-17",
       "commissions": [
@@ -151,7 +142,6 @@
     },
     {
       "sequence_id": 10,
-      "numero_atto": "2920",
       "activity": "esame_commissione",
       "date": "2026-06-18",
       "commissions": [
@@ -166,7 +156,6 @@
     },
     {
       "sequence_id": 11,
-      "numero_atto": "2920",
       "activity": "esame_aula",
       "date": "2026-06-19",
       "commissions": [],
@@ -179,7 +168,6 @@
     },
     {
       "sequence_id": 12,
-      "numero_atto": "2920",
       "activity": "esame_aula",
       "date": "2026-06-22",
       "commissions": [],
@@ -192,7 +180,6 @@
     },
     {
       "sequence_id": 13,
-      "numero_atto": "2920",
       "activity": "approvazione",
       "date": "2026-06-23",
       "commissions": [],
@@ -205,7 +192,6 @@
     },
     {
       "sequence_id": 14,
-      "numero_atto": "1944",
       "activity": "assegnazione",
       "date": "2026-06-23",
       "commissions": [
@@ -220,7 +206,6 @@
     },
     {
       "sequence_id": 15,
-      "numero_atto": "1944",
       "activity": "richiesta_parere",
       "date": "2026-06-23",
       "commissions": [
@@ -245,7 +230,6 @@
     },
     {
       "sequence_id": 16,
-      "numero_atto": "1944",
       "activity": "esame_commissione",
       "date": "2026-06-24",
       "commissions": [
@@ -260,7 +244,6 @@
     },
     {
       "sequence_id": 17,
-      "numero_atto": "1944",
       "activity": "esame_commissione",
       "date": "2026-06-30",
       "commissions": [
@@ -275,7 +258,6 @@
     },
     {
       "sequence_id": 18,
-      "numero_atto": "1944",
       "activity": "esame_aula",
       "date": "2026-07-01",
       "commissions": [],
@@ -288,7 +270,6 @@
     },
     {
       "sequence_id": 19,
-      "numero_atto": "1944",
       "activity": "approvazione",
       "date": "2026-07-01",
       "commissions": [],

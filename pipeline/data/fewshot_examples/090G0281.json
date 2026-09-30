@@ -4,7 +4,6 @@
   "eventi": [
     {
       "sequence_id": 1,
-      "numero_atto": "4686",
       "activity": "presentazione",
       "date": "1990-03-22",
       "commissions": [],
@@ -19,7 +18,6 @@
     },
     {
       "sequence_id": 2,
-      "numero_atto": "4686",
       "activity": "assegnazione",
       "date": "1990-05-10",
       "commissions": [
@@ -34,7 +32,6 @@
     },
     {
       "sequence_id": 3,
-      "numero_atto": "4686",
       "activity": "richiesta_parere",
       "date": "1990-05-10",
       "commissions": [
@@ -49,7 +46,6 @@
     },
     {
       "sequence_id": 4,
-      "numero_atto": "4686",
       "activity": "esame_commissione",
       "date": "1990-06-12",
       "commissions": [
@@ -64,7 +60,6 @@
     },
     {
       "sequence_id": 5,
-      "numero_atto": "4686",
       "activity": "approvazione",
       "date": "1990-06-20",
       "commissions": [
@@ -81,7 +76,6 @@
     },
     {
       "sequence_id": 6,
-      "numero_atto": "2342",
       "activity": "assegnazione",
       "date": "1990-07-11",
       "commissions": [
@@ -96,7 +90,6 @@
     },
     {
       "sequence_id": 7,
-      "numero_atto": "2342",
       "activity": "richiesta_parere",
       "date": "1990-07-11",
       "commissions": [
@@ -112,7 +105,6 @@
     },
     {
       "sequence_id": 8,
-      "numero_atto": "2342",
       "activity": "esame_commissione",
       "date": "1990-07-18",
       "commissions": [
@@ -127,7 +119,6 @@
     },
     {
       "sequence_id": 9,
-      "numero_atto": "2342",
       "activity": "approvazione",
       "date": "1990-07-18",
       "commissions": [

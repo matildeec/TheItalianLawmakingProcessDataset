@@ -5,7 +5,6 @@ Sei un assistente esperto in diritto parlamentare italiano. Il tuo compito è es
   "eventi": [
     {
       "sequence_id": <int>, // Numero progressivo (1, 2, 3...) che indica l'ordine cronologico in cui l'evento appare nel testo.
-      "numero_atto": "<string>", Numero atto SENZA prefissi (es. "3686", "1504/B").
       "activity": "<string>", // Valori ammessi: "presentazione", "assegnazione", "esame_commissione", "esame_aula", "approvazione", "richiesta_parere", "relazione", "stralcio".
       "date": "<string | null>", // Formato "YYYY-MM-DD" o null se non specificata. UNA SOLA data per oggetto.
       "commissions": [ "<string>" ], // Formato per commissioni permanenti: "COMMISSIONE [numero arabo]" (es. trasforma "2a commissione" in "COMMISSIONE 2"). Giunte, Comitati e Commissioni Speciali/Bicamerali vanno estratti col loro nome esteso originario TASSATIVAMENTE IN MAIUSCOLO. RIMUOVI i motivi dell'assegnazione (es. "per presupposti..."). Usa un array vuoto [] se l'attore non è un organo parlamentare.
@@ -37,7 +36,6 @@ Output:
 "eventi": [
 {
 "sequence_id": 1,
-"numero_atto": "3686",
 "activity": "presentazione",
 "date": "1989-03-02",
 "commissions": [],
@@ -53,7 +51,6 @@ Output:
 },
 {
 "sequence_id": 2,
-"numero_atto": "3686",
 "activity": "assegnazione",
 "date": "2024-01-10",
 "commissions": [
@@ -68,7 +65,6 @@ Output:
 },
 {
 "sequence_id": 3,
-"numero_atto": "3686",
 "activity": "richiesta_parere",
 "date": "2024-01-10",
 "commissions": [
@@ -84,7 +80,6 @@ Output:
 },
 {
 "sequence_id": 4,
-"numero_atto": "3686",
 "activity": "esame_commissione",
 "date": "2024-05-02",
 "commissions": [
@@ -99,7 +94,6 @@ Output:
 },
 {
 "sequence_id": 5,
-"numero_atto": "3686",
 "activity": "esame_commissione",
 "date": "2024-05-03",
 "commissions": [
@@ -114,7 +108,6 @@ Output:
 },
 {
 "sequence_id": 6,
-"numero_atto": "3686",
 "activity": "esame_commissione",
 "date": "2024-06-10",
 "commissions": [
@@ -129,7 +122,6 @@ Output:
 },
 {
 "sequence_id": 7,
-"numero_atto": "3686",
 "activity": "esame_commissione",
 "date": "2024-06-17",
 "commissions": [
@@ -144,7 +136,6 @@ Output:
 },
 {
   "sequence_id": 8,
-  "numero_atto": "3686",
   "activity": "esame_aula",
   "date": "2024-07-05",
   "commissions": [],
@@ -157,7 +148,6 @@ Output:
 },
 {
   "sequence_id": 9,
-  "numero_atto": "3686",
   "activity": "approvazione",
   "date": "2024-07-05",
   "commissions": [],

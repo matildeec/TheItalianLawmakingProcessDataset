@@ -50037,7 +50037,6 @@
       "event_date": "1988-02-05",
       "chamber": "camera",
       "details": {
-        "numero_atto": "2043/ bis",
         "chamber": "camera"
       }
     },
@@ -50051,7 +50050,6 @@
       "event_date": "1988-03-09",
       "chamber": "senato",
       "details": {
-        "numero_atto": "470-bis/B",
         "chamber": "senato"
       }
     },
@@ -51180,7 +51178,6 @@
       "event_date": "1985-07-11",
       "chamber": "senato",
       "details": {
-        "numero_atto": "436",
         "chamber": "senato"
       }
     },
@@ -103753,7 +103750,6 @@
         "event_date": "1988-02-05",
         "chamber": "camera",
         "details": {
-          "numero_atto": "2043/ bis",
           "chamber": "camera"
         }
       },
@@ -103767,7 +103763,6 @@
         "event_date": "1988-03-09",
         "chamber": "senato",
         "details": {
-          "numero_atto": "470-bis/B",
           "chamber": "senato"
         }
       }
@@ -104940,7 +104935,6 @@
         "event_date": "1985-07-11",
         "chamber": "senato",
         "details": {
-          "numero_atto": "436",
           "chamber": "senato"
         }
       }

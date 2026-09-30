@@ -1,20 +1,1179 @@
 [INFO] Terminal output will also be saved to: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.txt
-usage: run_evaluation.py [-h] [--input [INPUT ...]] [--gold GOLD]
-                         [--mode {raw}] [--threshold THRESHOLD] [--force]
+[INFO] Using 10 files specified in 'FILES_TO_EVALUATE' of config_eval.py.
+[INFO] Loading Sentence Transformer (sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2) on device 'cpu'...
+[INFO] Embedder successfully loaded on CPU.
 
-Iter Legis - Central Evaluation Orchestrator (LLM Output Validation against
-Gold Standard)
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: ZERO-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_zero-shot_2026-08-13_18-19.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             zero-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
 
-options:
-  -h, --help            show this help message and exit
-  --input [INPUT ...]   Inference JSONL output file(s) to evaluate.
-  --gold GOLD           Gold Standard file path. Default: /Users/matilde/Deskt
-                        op/git/TheItalianLawmakingProcessDataset/pipeline/data
-                        /gold_standard.json
-  --mode {raw}          Evaluation mode: validate raw model extraction output.
-                        Default: raw
-  --threshold THRESHOLD
-                        Similarity threshold for the Hungarian Algorithm.
-                        Default: 0.8
-  --force, --overwrite  Force re-evaluation even if the model already exists
-                        in output results.
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | ZERO-SHOT] FOR: gemma4:31b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | ZERO-SHOT]
+================================================================================
+| Model      | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:-----------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| gemma4:31b | zero-shot |          100 |               2036 | 99.95% (2035/2036) |                 0.8728 | 42.0% (42/100)      | 1.0% (1/100)             |               0.9975 |               0.9977 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: gemma4:31b (zero-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 95.42%               | 1938 / 2031     |
+| sede              | 98.18%               | 1994 / 2031     |
+| atti_unificati    | 98.97%               | 2010 / 2031     |
+| persons           | 99.66%               | 2024 / 2031     |
+| chamber           | 99.85%               | 2028 / 2031     |
+| activity          | 99.9%                | 2029 / 2031     |
+| date              | 99.9%                | 2029 / 2031     |
+| co_firmatari      | 100.0%               | 2031 / 2031     |
+| con_modificazioni | 100.0%               | 2031 / 2031     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: gemma4:31b (zero-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2029 / 2032 gold (Extracted: 2036)
+  • Micro-Averaged:     Precision: 0.9966 | Recall: 0.9985 | Micro-F1: 0.9975
+  • Macro-Averaged:     Precision: 0.9964 | Recall: 0.9992 | Macro-F1: 0.9977
+  • 100% Semantic Cases: 94/100 (94.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: gemma4:31b (zero-shot)
+  - other_errors: 1 violations
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: gemma4:31b (zero-shot) | (1 cases with errors out of 100)
+  - case_id: 001G0147 (1 errors)
+      • Event #25 (seq_id: 25): Procedural mode (sede) 'dilberante' not allowed
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: gemma4:31b (zero-shot)
+  • 100% Perfect Cases (J=1.0): 42/100 (42.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 28/100 (28.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 29/100 (29.0%)
+  • Critical Cases (J<0.5): 1/100 (1.0%)
+  => Total Safe Cases (J>=0.8): 70/100 (70.0%)
+  Listing first 1 critical cases:
+    - case_id: 14G00030 | Jaccard: 0.3165 | Matched Events: 25/52 (Pred: 52)
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: FEW-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_few-shot_2026-08-13_19-59.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             few-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
+
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | FEW-SHOT] FOR: gemma4:31b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | FEW-SHOT]
+================================================================================
+| Model      | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:-----------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| gemma4:31b | few-shot  |          100 |               2028 | 99.95% (2027/2028) |                 0.9273 | 58.0% (58/100)      | 1.0% (1/100)             |                0.998 |               0.9987 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: gemma4:31b (few-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| sede              | 97.58%               | 1978 / 2027     |
+| commissions       | 98.42%               | 1995 / 2027     |
+| atti_unificati    | 99.21%               | 2011 / 2027     |
+| date              | 99.8%                | 2023 / 2027     |
+| persons           | 99.8%                | 2023 / 2027     |
+| activity          | 99.9%                | 2025 / 2027     |
+| chamber           | 99.9%                | 2025 / 2027     |
+| co_firmatari      | 100.0%               | 2027 / 2027     |
+| con_modificazioni | 100.0%               | 2027 / 2027     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: gemma4:31b (few-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2026 / 2032 gold (Extracted: 2028)
+  • Micro-Averaged:     Precision: 0.999 | Recall: 0.997 | Micro-F1: 0.998
+  • Macro-Averaged:     Precision: 0.9991 | Recall: 0.9984 | Macro-F1: 0.9987
+  • 100% Semantic Cases: 95/100 (95.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: gemma4:31b (few-shot)
+  - other_errors: 1 violations
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: gemma4:31b (few-shot) | (1 cases with errors out of 100)
+  - case_id: 001G0147 (1 errors)
+      • Event #25 (seq_id: 25): Procedural mode (sede) 'dilberante' not allowed
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: gemma4:31b (few-shot)
+  • 100% Perfect Cases (J=1.0): 58/100 (58.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 31/100 (31.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 10/100 (10.0%)
+  • Critical Cases (J<0.5): 1/100 (1.0%)
+  => Total Safe Cases (J>=0.8): 89/100 (89.0%)
+  Listing first 1 critical cases:
+    - case_id: 14G00030 | Jaccard: 0.3333 | Matched Events: 26/52 (Pred: 52)
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: ZERO-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_zero-shot_2026-08-13_21-35.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             zero-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
+
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | ZERO-SHOT] FOR: llama3.3:70b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | ZERO-SHOT] FOR: qwen3.6:35b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | ZERO-SHOT]
+================================================================================
+| Model        | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:-------------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| llama3.3:70b | zero-shot |          100 |               1992 | 99.85% (1989/1992) |                 0.7026 | 27.0% (27/100)      | 22.0% (22/100)           |               0.9861 |               0.9946 |
+| qwen3.6:35b  | zero-shot |          100 |               2063 | 100.0% (2063/2063) |                 0.6741 | 22.0% (22/100)      | 27.0% (27/100)           |               0.991  |               0.9876 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: llama3.3:70b (zero-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 77.2%                | 1534 / 1987     |
+| sede              | 96.93%               | 1926 / 1987     |
+| atti_unificati    | 98.59%               | 1959 / 1987     |
+| persons           | 99.19%               | 1971 / 1987     |
+| date              | 99.8%                | 1983 / 1987     |
+| con_modificazioni | 99.8%                | 1983 / 1987     |
+| activity          | 99.85%               | 1984 / 1987     |
+| chamber           | 99.85%               | 1984 / 1987     |
+| co_firmatari      | 100.0%               | 1987 / 1987     |
+
+Model: qwen3.6:35b (zero-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 81.59%               | 1657 / 2031     |
+| sede              | 94.44%               | 1918 / 2031     |
+| persons           | 98.87%               | 2008 / 2031     |
+| atti_unificati    | 99.06%               | 2012 / 2031     |
+| date              | 99.7%                | 2025 / 2031     |
+| activity          | 99.85%               | 2028 / 2031     |
+| chamber           | 99.9%                | 2029 / 2031     |
+| co_firmatari      | 99.95%               | 2030 / 2031     |
+| con_modificazioni | 100.0%               | 2031 / 2031     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: llama3.3:70b (zero-shot) | Similarity Threshold: 0.8
+  • Matched Events:     1984 / 2032 gold (Extracted: 1992)
+  • Micro-Averaged:     Precision: 0.996 | Recall: 0.9764 | Micro-F1: 0.9861
+  • Macro-Averaged:     Precision: 0.9961 | Recall: 0.9938 | Macro-F1: 0.9946
+  • 100% Semantic Cases: 89/100 (89.0%)
+
+Model: qwen3.6:35b (zero-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2029 / 2032 gold (Extracted: 2063)
+  • Micro-Averaged:     Precision: 0.9835 | Recall: 0.9985 | Micro-F1: 0.991
+  • Macro-Averaged:     Precision: 0.9781 | Recall: 0.9989 | Macro-F1: 0.9876
+  • 100% Semantic Cases: 79/100 (79.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: llama3.3:70b (zero-shot)
+  - other_errors: 3 violations
+
+Model: qwen3.6:35b (zero-shot)
+  [OK] No schema violations found! All events comply with the prompt schema.
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: llama3.3:70b (zero-shot) | (3 cases with errors out of 100)
+  - case_id: 005G0116 (1 errors)
+      • Event #1 (seq_id: 1): Person 'FRAttini' must be strictly in uppercase
+  - case_id: 009G0178 (1 errors)
+      • Event #1 (seq_id: 1): Person 'FRAttini' must be strictly in uppercase
+  - case_id: 14G00030 (1 errors)
+      • Event #1 (seq_id: 1): Person 'MARCOCausi' must be strictly in uppercase
+
+Model: qwen3.6:35b (zero-shot) | (0 cases with errors out of 100)
+  [OK] No case_ids contain schema errors!
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: llama3.3:70b (zero-shot)
+  • 100% Perfect Cases (J=1.0): 27/100 (27.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 22/100 (22.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 29/100 (29.0%)
+  • Critical Cases (J<0.5): 22/100 (22.0%)
+  => Total Safe Cases (J>=0.8): 49/100 (49.0%)
+  Listing first 15 critical cases:
+    - case_id: 090G0387 | Jaccard: 0.0103 | Matched Events: 1/49 (Pred: 49)
+    - case_id: 089G0059 | Jaccard: 0.3846 | Matched Events: 5/9 (Pred: 9)
+    - case_id: 092G0181 | Jaccard: 0.3333 | Matched Events: 6/12 (Pred: 12)
+    - case_id: 001G0084 | Jaccard: 0.0698 | Matched Events: 9/70 (Pred: 68)
+    - case_id: 001G0060 | Jaccard: 0.4286 | Matched Events: 12/20 (Pred: 20)
+    - case_id: 097G0319 | Jaccard: 0.4 | Matched Events: 12/21 (Pred: 21)
+    - case_id: 099G0082 | Jaccard: 0.3929 | Matched Events: 11/19 (Pred: 20)
+    - case_id: 004G0174 | Jaccard: 0.25 | Matched Events: 8/20 (Pred: 20)
+    - case_id: 002G0156 | Jaccard: 0.2632 | Matched Events: 15/36 (Pred: 36)
+    - case_id: 085U0655 | Jaccard: 0.3429 | Matched Events: 12/24 (Pred: 23)
+    - case_id: 012G0243 | Jaccard: 0.0741 | Matched Events: 4/29 (Pred: 29)
+    - case_id: 012G0194 | Jaccard: 0.3125 | Matched Events: 10/21 (Pred: 21)
+    - case_id: 17G00140 | Jaccard: 0.4786 | Matched Events: 67/115 (Pred: 92)
+    - case_id: 14G00030 | Jaccard: 0.2683 | Matched Events: 22/52 (Pred: 52)
+    - case_id: 26G00044 | Jaccard: 0.0769 | Matched Events: 3/21 (Pred: 21)
+    ... and 7 additional critical cases.
+
+Model: qwen3.6:35b (zero-shot)
+  • 100% Perfect Cases (J=1.0): 22/100 (22.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 20/100 (20.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 31/100 (31.0%)
+  • Critical Cases (J<0.5): 27/100 (27.0%)
+  => Total Safe Cases (J>=0.8): 42/100 (42.0%)
+  Listing first 15 critical cases:
+    - case_id: 087U0402 | Jaccard: 0.3333 | Matched Events: 7/14 (Pred: 14)
+    - case_id: 091G0026 | Jaccard: 0.4286 | Matched Events: 6/9 (Pred: 11)
+    - case_id: 090G0078 | Jaccard: 0.4762 | Matched Events: 10/15 (Pred: 16)
+    - case_id: 089G0295 | Jaccard: 0.2857 | Matched Events: 6/13 (Pred: 14)
+    - case_id: 089G0059 | Jaccard: 0.3333 | Matched Events: 5/9 (Pred: 11)
+    - case_id: 089G0096 | Jaccard: 0.3333 | Matched Events: 5/9 (Pred: 11)
+    - case_id: 099G0010 | Jaccard: 0.4118 | Matched Events: 7/12 (Pred: 12)
+    - case_id: 097G0319 | Jaccard: 0.4 | Matched Events: 12/21 (Pred: 21)
+    - case_id: 099G0082 | Jaccard: 0.4444 | Matched Events: 12/19 (Pred: 20)
+    - case_id: 002G0156 | Jaccard: 0.2857 | Matched Events: 16/36 (Pred: 36)
+    - case_id: 004G0238 | Jaccard: 0.2692 | Matched Events: 7/16 (Pred: 17)
+    - case_id: 005G0116 | Jaccard: 0.1579 | Matched Events: 3/11 (Pred: 11)
+    - case_id: 085U0655 | Jaccard: 0.4848 | Matched Events: 16/24 (Pred: 25)
+    - case_id: 086U0880 | Jaccard: 0.2381 | Matched Events: 10/25 (Pred: 27)
+    - case_id: 085U0075 | Jaccard: 0.4667 | Matched Events: 7/11 (Pred: 11)
+    ... and 12 additional critical cases.
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: FEW-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_few-shot_2026-08-14_11-07.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             few-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
+
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | FEW-SHOT] FOR: llama3.3:70b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | FEW-SHOT] FOR: qwen3.6:35b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | FEW-SHOT]
+================================================================================
+| Model        | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:-------------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| llama3.3:70b | few-shot  |          100 |               1999 | 100.0% (1999/1999) |                 0.7784 | 35.0% (35/100)      | 19.0% (19/100)           |               0.9844 |               0.9922 |
+| qwen3.6:35b  | few-shot  |          100 |               2039 | 100.0% (2039/2039) |                 0.889  | 48.0% (48/100)      | 2.0% (2/100)             |               0.9948 |               0.9951 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: llama3.3:70b (few-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| sede              | 88.57%               | 1766 / 1994     |
+| commissions       | 95.64%               | 1907 / 1994     |
+| atti_unificati    | 99.1%                | 1976 / 1994     |
+| persons           | 99.55%               | 1985 / 1994     |
+| date              | 99.8%                | 1990 / 1994     |
+| con_modificazioni | 99.8%                | 1990 / 1994     |
+| chamber           | 99.85%               | 1991 / 1994     |
+| co_firmatari      | 99.9%                | 1992 / 1994     |
+| activity          | 99.95%               | 1993 / 1994     |
+
+Model: qwen3.6:35b (few-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| sede              | 97.09%               | 1969 / 2028     |
+| commissions       | 97.34%               | 1974 / 2028     |
+| atti_unificati    | 98.77%               | 2003 / 2028     |
+| persons           | 99.31%               | 2014 / 2028     |
+| date              | 99.61%               | 2020 / 2028     |
+| activity          | 99.75%               | 2023 / 2028     |
+| chamber           | 99.9%                | 2026 / 2028     |
+| co_firmatari      | 100.0%               | 2028 / 2028     |
+| con_modificazioni | 100.0%               | 2028 / 2028     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: llama3.3:70b (few-shot) | Similarity Threshold: 0.8
+  • Matched Events:     1984 / 2032 gold (Extracted: 1999)
+  • Micro-Averaged:     Precision: 0.9925 | Recall: 0.9764 | Micro-F1: 0.9844
+  • Macro-Averaged:     Precision: 0.9936 | Recall: 0.9913 | Macro-F1: 0.9922
+  • 100% Semantic Cases: 84/100 (84.0%)
+
+Model: qwen3.6:35b (few-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2025 / 2032 gold (Extracted: 2039)
+  • Micro-Averaged:     Precision: 0.9931 | Recall: 0.9966 | Micro-F1: 0.9948
+  • Macro-Averaged:     Precision: 0.9935 | Recall: 0.9972 | Macro-F1: 0.9951
+  • 100% Semantic Cases: 88/100 (88.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: llama3.3:70b (few-shot)
+  [OK] No schema violations found! All events comply with the prompt schema.
+
+Model: qwen3.6:35b (few-shot)
+  [OK] No schema violations found! All events comply with the prompt schema.
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: llama3.3:70b (few-shot) | (0 cases with errors out of 100)
+  [OK] No case_ids contain schema errors!
+
+Model: qwen3.6:35b (few-shot) | (0 cases with errors out of 100)
+  [OK] No case_ids contain schema errors!
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: llama3.3:70b (few-shot)
+  • 100% Perfect Cases (J=1.0): 35/100 (35.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 20/100 (20.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 26/100 (26.0%)
+  • Critical Cases (J<0.5): 19/100 (19.0%)
+  => Total Safe Cases (J>=0.8): 55/100 (55.0%)
+  Listing first 15 critical cases:
+    - case_id: 090G0387 | Jaccard: 0.4776 | Matched Events: 32/49 (Pred: 50)
+    - case_id: 090G0303 | Jaccard: 0.4333 | Matched Events: 13/21 (Pred: 22)
+    - case_id: 000G0082 | Jaccard: 0.3023 | Matched Events: 13/28 (Pred: 28)
+    - case_id: 000G0006 | Jaccard: 0.4 | Matched Events: 8/14 (Pred: 14)
+    - case_id: 001G0147 | Jaccard: 0.2444 | Matched Events: 11/28 (Pred: 28)
+    - case_id: 098G0437 | Jaccard: 0.2857 | Matched Events: 8/18 (Pred: 18)
+    - case_id: 000G0440 | Jaccard: 0.4902 | Matched Events: 25/38 (Pred: 38)
+    - case_id: 001G0060 | Jaccard: 0.2903 | Matched Events: 9/20 (Pred: 20)
+    - case_id: 004G0226 | Jaccard: 0.4074 | Matched Events: 11/19 (Pred: 19)
+    - case_id: 005G0088 | Jaccard: 0.4857 | Matched Events: 17/26 (Pred: 26)
+    - case_id: 002G0156 | Jaccard: 0.2632 | Matched Events: 15/36 (Pred: 36)
+    - case_id: 004G0238 | Jaccard: 0.4545 | Matched Events: 10/16 (Pred: 16)
+    - case_id: 085U0655 | Jaccard: 0.3429 | Matched Events: 12/24 (Pred: 23)
+    - case_id: 086U0880 | Jaccard: 0.25 | Matched Events: 10/25 (Pred: 25)
+    - case_id: 086U0041 | Jaccard: 0.4409 | Matched Events: 41/65 (Pred: 69)
+    ... and 4 additional critical cases.
+
+Model: qwen3.6:35b (few-shot)
+  • 100% Perfect Cases (J=1.0): 48/100 (48.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 28/100 (28.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 22/100 (22.0%)
+  • Critical Cases (J<0.5): 2/100 (2.0%)
+  => Total Safe Cases (J>=0.8): 76/100 (76.0%)
+  Listing first 2 critical cases:
+    - case_id: 090G0303 | Jaccard: 0.4516 | Matched Events: 14/21 (Pred: 24)
+    - case_id: 14G00030 | Jaccard: 0.1183 | Matched Events: 11/52 (Pred: 52)
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: ZERO-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_zero-shot_2026-08-14_14-46.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             zero-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
+
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | ZERO-SHOT] FOR: qwen3.5:9b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | ZERO-SHOT] FOR: gemma4:12b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | ZERO-SHOT]
+================================================================================
+| Model      | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:-----------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| qwen3.5:9b | zero-shot |          100 |               1908 | 94.55% (1804/1908) |                 0.2596 | 1.0% (1/100)        | 87.0% (87/100)           |               0.9411 |               0.9656 |
+| gemma4:12b | zero-shot |          100 |               2039 | 99.85% (2036/2039) |                 0.7953 | 25.0% (25/100)      | 5.0% (5/100)             |               0.9953 |               0.9943 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: qwen3.5:9b (zero-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 44.37%               | 835 / 1882      |
+| sede              | 91.76%               | 1727 / 1882     |
+| atti_unificati    | 92.72%               | 1745 / 1882     |
+| date              | 96.12%               | 1809 / 1882     |
+| persons           | 97.5%                | 1835 / 1882     |
+| co_firmatari      | 98.41%               | 1852 / 1882     |
+| con_modificazioni | 98.72%               | 1858 / 1882     |
+| activity          | 99.1%                | 1865 / 1882     |
+| chamber           | 99.79%               | 1878 / 1882     |
+
+Model: gemma4:12b (zero-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 93.25%               | 1892 / 2029     |
+| sede              | 97.09%               | 1970 / 2029     |
+| persons           | 98.67%               | 2002 / 2029     |
+| atti_unificati    | 98.67%               | 2002 / 2029     |
+| chamber           | 99.51%               | 2019 / 2029     |
+| date              | 99.75%               | 2024 / 2029     |
+| activity          | 99.95%               | 2028 / 2029     |
+| co_firmatari      | 99.95%               | 2028 / 2029     |
+| con_modificazioni | 99.95%               | 2028 / 2029     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: qwen3.5:9b (zero-shot) | Similarity Threshold: 0.8
+  • Matched Events:     1854 / 2032 gold (Extracted: 1908)
+  • Micro-Averaged:     Precision: 0.9717 | Recall: 0.9124 | Micro-F1: 0.9411
+  • Macro-Averaged:     Precision: 0.9685 | Recall: 0.9647 | Macro-F1: 0.9656
+  • 100% Semantic Cases: 65/100 (65.0%)
+
+Model: gemma4:12b (zero-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2026 / 2032 gold (Extracted: 2039)
+  • Micro-Averaged:     Precision: 0.9936 | Recall: 0.997 | Micro-F1: 0.9953
+  • Macro-Averaged:     Precision: 0.992 | Recall: 0.997 | Macro-F1: 0.9943
+  • 100% Semantic Cases: 86/100 (86.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: qwen3.5:9b (zero-shot)
+  - other_errors: 77 violations
+  - activity: 56 violations
+
+Model: gemma4:12b (zero-shot)
+  - missing_keys: 3 violations
+  - extra_keys: 3 violations
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: qwen3.5:9b (zero-shot) | (32 cases with errors out of 100)
+  - case_id: 088G0238 (3 errors)
+      • Event #1 (seq_id: 1): Person 'Andreotti' must be strictly in uppercase
+      • Event #3 (seq_id: 3): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #8 (seq_id: 8): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+  - case_id: 087U0402 (13 errors)
+      • Event #2 (seq_id: 2): Commission 'COMMISSIONE I (Affari costituzionali)' must be strictly in uppercase
+      • Event #2 (seq_id: 2): Commission 'COMMISSIONE XI (Lavoro)' must be strictly in uppercase
+      • Event #4 (seq_id: 4): Commission 'COMMISSIONE I (Affari costituzionali)' must be strictly in uppercase
+  - case_id: 090G0387 (4 errors)
+      • Event #3 (seq_id: 3): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #31 (seq_id: 31): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #50 (seq_id: 50): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+  - case_id: 091G0026 (2 errors)
+      • Event #1 (seq_id: 1): Person 'Andreotti' must be strictly in uppercase
+      • Event #1 (seq_id: 1): Person 'Maccanico' must be strictly in uppercase
+  - case_id: 090G0078 (4 errors)
+      • Event #3 (seq_id: 3): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #6 (seq_id: 6): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #11 (seq_id: 11): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+  - case_id: 089G0295 (2 errors)
+      • Event #3 (seq_id: 3): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #11 (seq_id: 11): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+  - case_id: 088G0299 (2 errors)
+      • Event #3 (seq_id: 3): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #10 (seq_id: 10): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+  - case_id: 092G0181 (2 errors)
+      • Event #2 (seq_id: 2): Activity 'approvazione_commissione' not allowed (permitted: ['approvazione', 'assegnazione', 'esame_aula', 'esame_commissione', 'presentazione', 'relazione', 'richiesta_parere', 'stralcio'])
+      • Event #5 (seq_id: 5): Activity 'approvazione_commissione' not allowed (permitted: ['approvazione', 'assegnazione', 'esame_aula', 'esame_commissione', 'presentazione', 'relazione', 'richiesta_parere', 'stralcio'])
+  - case_id: 091G0041 (3 errors)
+      • Event #1 (seq_id: 1): Person 'Andreotti' must be strictly in uppercase
+      • Event #1 (seq_id: 1): Person 'Carli' must be strictly in uppercase
+      • Event #1 (seq_id: 1): Person 'Gaspari' must be strictly in uppercase
+  - case_id: 090G0303 (3 errors)
+      • Event #3 (seq_id: 3): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #12 (seq_id: 12): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #19 (seq_id: 19): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+  ... and 22 additional cases with schema errors.
+
+Model: gemma4:12b (zero-shot) | (3 cases with errors out of 100)
+  - case_id: 004G0036 (2 errors)
+      • Event #17 (seq_id: 17): Missing required key: 'commissions'
+      • Event #17 (seq_id: 17): Unrecognized extra keys not defined in prompt schema: ['comm_issions']
+  - case_id: 25G00112 (2 errors)
+      • Event #8 (seq_id: 8): Missing required key: 'con_modificazioni'
+      • Event #8 (seq_id: 8): Unrecognized extra keys not defined in prompt schema: ['con_mod_ificazioni']
+  - case_id: 007G0228 (2 errors)
+      • Event #10 (seq_id: 10): Missing required key: 'commissions'
+      • Event #10 (seq_id: 10): Unrecognized extra keys not defined in prompt schema: ['comm_commissions']
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: qwen3.5:9b (zero-shot)
+  • 100% Perfect Cases (J=1.0): 1/100 (1.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 1/100 (1.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 11/100 (11.0%)
+  • Critical Cases (J<0.5): 87/100 (87.0%)
+  => Total Safe Cases (J>=0.8): 2/100 (2.0%)
+  Listing first 15 critical cases:
+    - case_id: 088G0238 | Jaccard: 0.4667 | Matched Events: 7/11 (Pred: 11)
+    - case_id: 089G0181 | Jaccard: 0.1724 | Matched Events: 5/17 (Pred: 17)
+    - case_id: 087U0402 | Jaccard: 0.0 | Matched Events: 0/14 (Pred: 12)
+    - case_id: 090G0387 | Jaccard: 0.01 | Matched Events: 1/49 (Pred: 52)
+    - case_id: 090G0233 | Jaccard: 0.1111 | Matched Events: 3/15 (Pred: 15)
+    - case_id: 091G0026 | Jaccard: 0.125 | Matched Events: 2/9 (Pred: 9)
+    - case_id: 092G0067 | Jaccard: 0.2632 | Matched Events: 5/12 (Pred: 12)
+    - case_id: 090G0078 | Jaccard: 0.1667 | Matched Events: 4/15 (Pred: 13)
+    - case_id: 089G0295 | Jaccard: 0.2381 | Matched Events: 5/13 (Pred: 13)
+    - case_id: 089G0059 | Jaccard: 0.3846 | Matched Events: 5/9 (Pred: 9)
+    - case_id: 089G0096 | Jaccard: 0.0588 | Matched Events: 1/9 (Pred: 9)
+    - case_id: 088G0299 | Jaccard: 0.3333 | Matched Events: 6/12 (Pred: 12)
+    - case_id: 092G0181 | Jaccard: 0.0 | Matched Events: 0/12 (Pred: 10)
+    - case_id: 090G0295 | Jaccard: 0.2222 | Matched Events: 4/11 (Pred: 11)
+    - case_id: 092G0219 | Jaccard: 0.037 | Matched Events: 1/14 (Pred: 14)
+    ... and 72 additional critical cases.
+
+Model: gemma4:12b (zero-shot)
+  • 100% Perfect Cases (J=1.0): 25/100 (25.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 26/100 (26.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 44/100 (44.0%)
+  • Critical Cases (J<0.5): 5/100 (5.0%)
+  => Total Safe Cases (J>=0.8): 51/100 (51.0%)
+  Listing first 5 critical cases:
+    - case_id: 089G0096 | Jaccard: 0.4615 | Matched Events: 6/9 (Pred: 10)
+    - case_id: 000G0268 | Jaccard: 0.3333 | Matched Events: 7/14 (Pred: 14)
+    - case_id: 002G0156 | Jaccard: 0.2857 | Matched Events: 16/36 (Pred: 36)
+    - case_id: 085U0075 | Jaccard: 0.4667 | Matched Events: 7/11 (Pred: 11)
+    - case_id: 14G00030 | Jaccard: 0.3165 | Matched Events: 25/52 (Pred: 52)
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: FEW-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_few-shot_2026-08-14_15-19.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             few-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
+
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | FEW-SHOT] FOR: qwen3.5:9b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | FEW-SHOT] FOR: gemma4:12b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | FEW-SHOT]
+================================================================================
+| Model      | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:-----------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| qwen3.5:9b | few-shot  |          100 |               1996 | 99.25% (1981/1996) |                 0.7273 | 23.0% (23/100)      | 13.0% (13/100)           |               0.9633 |               0.9726 |
+| gemma4:12b | few-shot  |          100 |               2015 | 100.0% (2015/2015) |                 0.863  | 47.0% (47/100)      | 5.0% (5/100)             |               0.9928 |               0.9882 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: qwen3.5:9b (few-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 90.06%               | 1757 / 1951     |
+| sede              | 93.34%               | 1821 / 1951     |
+| atti_unificati    | 95.49%               | 1863 / 1951     |
+| persons           | 98.05%               | 1913 / 1951     |
+| activity          | 98.82%               | 1928 / 1951     |
+| date              | 98.82%               | 1928 / 1951     |
+| con_modificazioni | 99.59%               | 1943 / 1951     |
+| co_firmatari      | 99.79%               | 1947 / 1951     |
+| chamber           | 99.79%               | 1947 / 1951     |
+
+Model: gemma4:12b (few-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| sede              | 95.27%               | 1915 / 2010     |
+| commissions       | 97.61%               | 1962 / 2010     |
+| atti_unificati    | 98.61%               | 1982 / 2010     |
+| persons           | 99.2%                | 1994 / 2010     |
+| date              | 99.6%                | 2002 / 2010     |
+| activity          | 99.9%                | 2008 / 2010     |
+| chamber           | 99.9%                | 2008 / 2010     |
+| co_firmatari      | 100.0%               | 2010 / 2010     |
+| con_modificazioni | 100.0%               | 2010 / 2010     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: qwen3.5:9b (few-shot) | Similarity Threshold: 0.8
+  • Matched Events:     1940 / 2032 gold (Extracted: 1996)
+  • Micro-Averaged:     Precision: 0.9719 | Recall: 0.9547 | Micro-F1: 0.9633
+  • Macro-Averaged:     Precision: 0.9679 | Recall: 0.9798 | Macro-F1: 0.9726
+  • 100% Semantic Cases: 71/100 (71.0%)
+
+Model: gemma4:12b (few-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2009 / 2032 gold (Extracted: 2015)
+  • Micro-Averaged:     Precision: 0.997 | Recall: 0.9887 | Micro-F1: 0.9928
+  • Macro-Averaged:     Precision: 0.9884 | Recall: 0.9882 | Macro-F1: 0.9882
+  • 100% Semantic Cases: 91/100 (91.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: qwen3.5:9b (few-shot)
+  - activity: 15 violations
+
+Model: gemma4:12b (few-shot)
+  [OK] No schema violations found! All events comply with the prompt schema.
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: qwen3.5:9b (few-shot) | (4 cases with errors out of 100)
+  - case_id: 004G0174 (2 errors)
+      • Event #9 (seq_id: 9): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #10 (seq_id: 10): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+  - case_id: 004G0226 (1 errors)
+      • Event #12 (seq_id: 12): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+  - case_id: 005G0088 (11 errors)
+      • Event #11 (seq_id: 11): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #12 (seq_id: 12): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+      • Event #13 (seq_id: 13): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+  - case_id: 19G00089 (1 errors)
+      • Event #19 (seq_id: 19): Prompt constraint: for activity 'richiesta_parere' procedural mode must be 'consultiva', got 'None'
+
+Model: gemma4:12b (few-shot) | (0 cases with errors out of 100)
+  [OK] No case_ids contain schema errors!
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: qwen3.5:9b (few-shot)
+  • 100% Perfect Cases (J=1.0): 23/100 (23.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 24/100 (24.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 40/100 (40.0%)
+  • Critical Cases (J<0.5): 13/100 (13.0%)
+  => Total Safe Cases (J>=0.8): 47/100 (47.0%)
+  Listing first 13 critical cases:
+    - case_id: 087U0402 | Jaccard: 0.2727 | Matched Events: 6/14 (Pred: 14)
+    - case_id: 090G0387 | Jaccard: 0.4923 | Matched Events: 32/49 (Pred: 48)
+    - case_id: 092G0181 | Jaccard: 0.4118 | Matched Events: 7/12 (Pred: 12)
+    - case_id: 090G0295 | Jaccard: 0.3333 | Matched Events: 6/11 (Pred: 13)
+    - case_id: 000G0440 | Jaccard: 0.4902 | Matched Events: 25/38 (Pred: 38)
+    - case_id: 001G0084 | Jaccard: 0.0 | Matched Events: 0/70 (Pred: 0)
+    - case_id: 002G0156 | Jaccard: 0.0896 | Matched Events: 6/36 (Pred: 37)
+    - case_id: 085U0655 | Jaccard: 0.1364 | Matched Events: 6/24 (Pred: 26)
+    - case_id: 012G0194 | Jaccard: 0.4194 | Matched Events: 13/21 (Pred: 23)
+    - case_id: 14G00030 | Jaccard: 0.1429 | Matched Events: 13/52 (Pred: 52)
+    - case_id: 21G00071 | Jaccard: 0.2222 | Matched Events: 8/22 (Pred: 22)
+    - case_id: 19G00089 | Jaccard: 0.186 | Matched Events: 8/26 (Pred: 25)
+    - case_id: 094G0108 | Jaccard: 0.0303 | Matched Events: 1/17 (Pred: 17)
+
+Model: gemma4:12b (few-shot)
+  • 100% Perfect Cases (J=1.0): 47/100 (47.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 25/100 (25.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 23/100 (23.0%)
+  • Critical Cases (J<0.5): 5/100 (5.0%)
+  => Total Safe Cases (J>=0.8): 72/100 (72.0%)
+  Listing first 5 critical cases:
+    - case_id: 000G0440 | Jaccard: 0.4074 | Matched Events: 22/38 (Pred: 38)
+    - case_id: 001G0471 | Jaccard: 0.0 | Matched Events: 0/19 (Pred: 0)
+    - case_id: 086U0041 | Jaccard: 0.4516 | Matched Events: 42/65 (Pred: 70)
+    - case_id: 008G0154 | Jaccard: 0.3333 | Matched Events: 9/18 (Pred: 18)
+    - case_id: 007G0138 | Jaccard: 0.2727 | Matched Events: 12/28 (Pred: 28)
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: ZERO-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_zero-shot_2026-08-14_19-43.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             zero-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
+
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | ZERO-SHOT] FOR: qwen3.5:27b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | ZERO-SHOT] FOR: mistral-small3.2:24b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | ZERO-SHOT]
+================================================================================
+| Model                | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:---------------------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| qwen3.5:27b          | zero-shot |          100 |               2027 | 100.0% (2027/2027) |                 0.8    | 39.0% (39/100)      | 10.0% (10/100)           |               0.9958 |               0.9973 |
+| mistral-small3.2:24b | zero-shot |          100 |               2039 | 99.75% (2034/2039) |                 0.6496 | 21.0% (21/100)      | 34.0% (34/100)           |               0.9948 |               0.9948 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: qwen3.5:27b (zero-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 85.48%               | 1731 / 2025     |
+| sede              | 97.04%               | 1965 / 2025     |
+| atti_unificati    | 98.96%               | 2004 / 2025     |
+| persons           | 99.31%               | 2011 / 2025     |
+| date              | 99.8%                | 2021 / 2025     |
+| activity          | 99.9%                | 2023 / 2025     |
+| co_firmatari      | 99.9%                | 2023 / 2025     |
+| chamber           | 99.9%                | 2023 / 2025     |
+| con_modificazioni | 99.95%               | 2024 / 2025     |
+
+Model: mistral-small3.2:24b (zero-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 79.73%               | 1617 / 2028     |
+| sede              | 97.98%               | 1987 / 2028     |
+| atti_unificati    | 98.27%               | 1993 / 2028     |
+| con_modificazioni | 99.01%               | 2008 / 2028     |
+| persons           | 99.56%               | 2019 / 2028     |
+| activity          | 99.61%               | 2020 / 2028     |
+| date              | 99.65%               | 2021 / 2028     |
+| chamber           | 99.9%                | 2026 / 2028     |
+| co_firmatari      | 100.0%               | 2028 / 2028     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: qwen3.5:27b (zero-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2021 / 2032 gold (Extracted: 2027)
+  • Micro-Averaged:     Precision: 0.997 | Recall: 0.9946 | Micro-F1: 0.9958
+  • Macro-Averaged:     Precision: 0.9973 | Recall: 0.9974 | Macro-F1: 0.9973
+  • 100% Semantic Cases: 92/100 (92.0%)
+
+Model: mistral-small3.2:24b (zero-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2025 / 2032 gold (Extracted: 2039)
+  • Micro-Averaged:     Precision: 0.9931 | Recall: 0.9966 | Micro-F1: 0.9948
+  • Macro-Averaged:     Precision: 0.9924 | Recall: 0.9976 | Macro-F1: 0.9948
+  • 100% Semantic Cases: 87/100 (87.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: qwen3.5:27b (zero-shot)
+  [OK] No schema violations found! All events comply with the prompt schema.
+
+Model: mistral-small3.2:24b (zero-shot)
+  - other_errors: 7 violations
+  - activity: 1 violations
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: qwen3.5:27b (zero-shot) | (0 cases with errors out of 100)
+  [OK] No case_ids contain schema errors!
+
+Model: mistral-small3.2:24b (zero-shot) | (3 cases with errors out of 100)
+  - case_id: 092G0067 (6 errors)
+      • Event #7 (seq_id: 7): Commission '3a COMMISSIONE' must be strictly in uppercase
+      • Event #8 (seq_id: 8): Commission 'COMMISSIONE 1a' must be strictly in uppercase
+      • Event #8 (seq_id: 8): Commission 'COMMISSIONE 5a' must be strictly in uppercase
+  - case_id: 088G0299 (1 errors)
+      • Event #7 (seq_id: 7): Prompt constraint: for activity 'esame_aula' procedural mode must be null, got 'deliberante'
+  - case_id: 26G00044 (1 errors)
+      • Event #17 (seq_id: 17): Commission 'COMMISSIONE 8ª (AMBIENTE, TRANSIZIONE ECologica, ENERGIA, LAVORI PUBBLICI, COMUNICAZIONI, INNOVAZIONE TECNOLOGICA)' must be strictly in uppercase
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: qwen3.5:27b (zero-shot)
+  • 100% Perfect Cases (J=1.0): 39/100 (39.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 19/100 (19.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 32/100 (32.0%)
+  • Critical Cases (J<0.5): 10/100 (10.0%)
+  => Total Safe Cases (J>=0.8): 58/100 (58.0%)
+  Listing first 10 critical cases:
+    - case_id: 001G0094 | Jaccard: 0.3333 | Matched Events: 7/14 (Pred: 14)
+    - case_id: 001G0060 | Jaccard: 0.3793 | Matched Events: 11/20 (Pred: 20)
+    - case_id: 004G0238 | Jaccard: 0.3913 | Matched Events: 9/16 (Pred: 16)
+    - case_id: 085U0655 | Jaccard: 0.2703 | Matched Events: 10/24 (Pred: 23)
+    - case_id: 17G00140 | Jaccard: 0.0849 | Matched Events: 18/115 (Pred: 115)
+    - case_id: 14G00030 | Jaccard: 0.1183 | Matched Events: 11/52 (Pred: 52)
+    - case_id: 25G00112 | Jaccard: 0.44 | Matched Events: 11/18 (Pred: 18)
+    - case_id: 21G00071 | Jaccard: 0.2222 | Matched Events: 8/22 (Pred: 22)
+    - case_id: 094G0108 | Jaccard: 0.0303 | Matched Events: 1/17 (Pred: 17)
+    - case_id: 095G0217 | Jaccard: 0.4737 | Matched Events: 9/14 (Pred: 14)
+
+Model: mistral-small3.2:24b (zero-shot)
+  • 100% Perfect Cases (J=1.0): 21/100 (21.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 18/100 (18.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 27/100 (27.0%)
+  • Critical Cases (J<0.5): 34/100 (34.0%)
+  => Total Safe Cases (J>=0.8): 39/100 (39.0%)
+  Listing first 15 critical cases:
+    - case_id: 087U0402 | Jaccard: 0.2727 | Matched Events: 6/14 (Pred: 14)
+    - case_id: 090G0233 | Jaccard: 0.3043 | Matched Events: 7/15 (Pred: 15)
+    - case_id: 091G0026 | Jaccard: 0.2 | Matched Events: 3/9 (Pred: 9)
+    - case_id: 092G0067 | Jaccard: 0.3333 | Matched Events: 6/12 (Pred: 12)
+    - case_id: 089G0059 | Jaccard: 0.2857 | Matched Events: 4/9 (Pred: 9)
+    - case_id: 092G0181 | Jaccard: 0.3333 | Matched Events: 6/12 (Pred: 12)
+    - case_id: 092G0219 | Jaccard: 0.12 | Matched Events: 3/14 (Pred: 14)
+    - case_id: 088G0527 | Jaccard: 0.2857 | Matched Events: 4/9 (Pred: 9)
+    - case_id: 091G0041 | Jaccard: 0.2381 | Matched Events: 5/13 (Pred: 13)
+    - case_id: 090G0303 | Jaccard: 0.4 | Matched Events: 12/21 (Pred: 21)
+    - case_id: 088G0330 | Jaccard: 0.0435 | Matched Events: 1/12 (Pred: 12)
+    - case_id: 088G0216 | Jaccard: 0.3636 | Matched Events: 8/15 (Pred: 15)
+    - case_id: 000G0082 | Jaccard: 0.4 | Matched Events: 16/28 (Pred: 28)
+    - case_id: 001G0060 | Jaccard: 0.3793 | Matched Events: 11/20 (Pred: 20)
+    - case_id: 097G0319 | Jaccard: 0.4 | Matched Events: 12/21 (Pred: 21)
+    ... and 19 additional critical cases.
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: FEW-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_few-shot_2026-08-14_17-40.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             few-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
+
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | FEW-SHOT] FOR: qwen3.5:27b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | FEW-SHOT] FOR: mistral-small3.2:24b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | FEW-SHOT]
+================================================================================
+| Model                | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:---------------------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| qwen3.5:27b          | few-shot  |          100 |               2027 | 100.0% (2027/2027) |                 0.9129 | 55.0% (55/100)      | 1.0% (1/100)             |               0.9973 |               0.9974 |
+| mistral-small3.2:24b | few-shot  |          100 |               2031 | 100.0% (2031/2031) |                 0.8502 | 39.0% (39/100)      | 9.0% (9/100)             |               0.9963 |               0.9968 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: qwen3.5:27b (few-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| sede              | 96.94%               | 1964 / 2026     |
+| commissions       | 98.27%               | 1991 / 2026     |
+| atti_unificati    | 99.01%               | 2006 / 2026     |
+| date              | 99.61%               | 2018 / 2026     |
+| persons           | 99.61%               | 2018 / 2026     |
+| activity          | 99.7%                | 2020 / 2026     |
+| con_modificazioni | 99.85%               | 2023 / 2026     |
+| chamber           | 99.9%                | 2024 / 2026     |
+| co_firmatari      | 100.0%               | 2026 / 2026     |
+
+Model: mistral-small3.2:24b (few-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| sede              | 93.14%               | 1888 / 2027     |
+| atti_unificati    | 97.53%               | 1977 / 2027     |
+| commissions       | 98.27%               | 1992 / 2027     |
+| con_modificazioni | 98.77%               | 2002 / 2027     |
+| persons           | 99.16%               | 2010 / 2027     |
+| date              | 99.56%               | 2018 / 2027     |
+| chamber           | 99.85%               | 2024 / 2027     |
+| activity          | 99.9%                | 2025 / 2027     |
+| co_firmatari      | 100.0%               | 2027 / 2027     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: qwen3.5:27b (few-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2024 / 2032 gold (Extracted: 2027)
+  • Micro-Averaged:     Precision: 0.9985 | Recall: 0.9961 | Micro-F1: 0.9973
+  • Macro-Averaged:     Precision: 0.9988 | Recall: 0.9961 | Macro-F1: 0.9974
+  • 100% Semantic Cases: 92/100 (92.0%)
+
+Model: mistral-small3.2:24b (few-shot) | Similarity Threshold: 0.8
+  • Matched Events:     2024 / 2032 gold (Extracted: 2031)
+  • Micro-Averaged:     Precision: 0.9966 | Recall: 0.9961 | Micro-F1: 0.9963
+  • Macro-Averaged:     Precision: 0.9965 | Recall: 0.9972 | Macro-F1: 0.9968
+  • 100% Semantic Cases: 89/100 (89.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: qwen3.5:27b (few-shot)
+  [OK] No schema violations found! All events comply with the prompt schema.
+
+Model: mistral-small3.2:24b (few-shot)
+  [OK] No schema violations found! All events comply with the prompt schema.
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: qwen3.5:27b (few-shot) | (0 cases with errors out of 100)
+  [OK] No case_ids contain schema errors!
+
+Model: mistral-small3.2:24b (few-shot) | (0 cases with errors out of 100)
+  [OK] No case_ids contain schema errors!
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: qwen3.5:27b (few-shot)
+  • 100% Perfect Cases (J=1.0): 55/100 (55.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 28/100 (28.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 16/100 (16.0%)
+  • Critical Cases (J<0.5): 1/100 (1.0%)
+  => Total Safe Cases (J>=0.8): 83/100 (83.0%)
+  Listing first 1 critical cases:
+    - case_id: 14G00030 | Jaccard: 0.1556 | Matched Events: 14/52 (Pred: 52)
+
+Model: mistral-small3.2:24b (few-shot)
+  • 100% Perfect Cases (J=1.0): 39/100 (39.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 37/100 (37.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 15/100 (15.0%)
+  • Critical Cases (J<0.5): 9/100 (9.0%)
+  => Total Safe Cases (J>=0.8): 76/100 (76.0%)
+  Listing first 9 critical cases:
+    - case_id: 099G0082 | Jaccard: 0.4444 | Matched Events: 12/19 (Pred: 20)
+    - case_id: 004G0226 | Jaccard: 0.3214 | Matched Events: 9/19 (Pred: 18)
+    - case_id: 002G0156 | Jaccard: 0.2414 | Matched Events: 14/36 (Pred: 36)
+    - case_id: 004G0238 | Jaccard: 0.4348 | Matched Events: 10/16 (Pred: 17)
+    - case_id: 085U0655 | Jaccard: 0.1429 | Matched Events: 6/24 (Pred: 24)
+    - case_id: 086U0041 | Jaccard: 0.4409 | Matched Events: 41/65 (Pred: 69)
+    - case_id: 14G00030 | Jaccard: 0.1183 | Matched Events: 11/52 (Pred: 52)
+    - case_id: 094G0108 | Jaccard: 0.4167 | Matched Events: 10/17 (Pred: 17)
+    - case_id: 007G0138 | Jaccard: 0.2727 | Matched Events: 12/28 (Pred: 28)
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: ZERO-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_zero-shot_2026-08-14_23-24.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             zero-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
+
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | ZERO-SHOT] FOR: gemma3:27b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | ZERO-SHOT]
+================================================================================
+| Model      | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:-----------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| gemma3:27b | zero-shot |          100 |               1904 | 98.95% (1884/1904) |                 0.6241 | 15.0% (15/100)      | 32.0% (32/100)           |               0.9634 |               0.9841 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: gemma3:27b (zero-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 75.76%               | 1438 / 1898     |
+| sede              | 96.84%               | 1838 / 1898     |
+| atti_unificati    | 99.16%               | 1882 / 1898     |
+| persons           | 99.21%               | 1883 / 1898     |
+| date              | 99.63%               | 1891 / 1898     |
+| con_modificazioni | 99.74%               | 1893 / 1898     |
+| co_firmatari      | 99.79%               | 1894 / 1898     |
+| chamber           | 99.84%               | 1895 / 1898     |
+| activity          | 99.89%               | 1896 / 1898     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: gemma3:27b (zero-shot) | Similarity Threshold: 0.8
+  • Matched Events:     1896 / 2032 gold (Extracted: 1904)
+  • Micro-Averaged:     Precision: 0.9958 | Recall: 0.9331 | Micro-F1: 0.9634
+  • Macro-Averaged:     Precision: 0.9957 | Recall: 0.9774 | Macro-F1: 0.9841
+  • 100% Semantic Cases: 76/100 (76.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: gemma3:27b (zero-shot)
+  - other_errors: 20 violations
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: gemma3:27b (zero-shot) | (6 cases with errors out of 100)
+  - case_id: 091G0026 (1 errors)
+      • Event #3 (seq_id: 3): Commission 'commissione per le questioni regionali' must be strictly in uppercase
+  - case_id: 001G0147 (1 errors)
+      • Event #25 (seq_id: 25): Procedural mode (sede) 'dilberante' not allowed
+  - case_id: 099G0082 (13 errors)
+      • Event #1 (seq_id: 1): Commission 'COMMISSIONE VI (Finanze)' must be strictly in uppercase
+      • Event #2 (seq_id: 2): Commission 'COMMISSIONE 6ª (Finanze)' must be strictly in uppercase
+      • Event #3 (seq_id: 3): Commission 'COMMISSIONE VI (Finanze)' must be strictly in uppercase
+  - case_id: 13G00029 (3 errors)
+      • Event #3 (seq_id: 3): Commission 'Questioni regionali' must be strictly in uppercase
+      • Event #13 (seq_id: 13): Commission 'Questioni regionali' must be strictly in uppercase
+      • Event #17 (seq_id: 17): Commission 'Questioni regionali' must be strictly in uppercase
+  - case_id: 14G00187 (1 errors)
+      • Event #3 (seq_id: 3): Commission 'Questioni regionali' must be strictly in uppercase
+  - case_id: 094G0205 (1 errors)
+      • Event #5 (seq_id: 5): Person 'AGNELLI Arduino' must be strictly in uppercase
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: gemma3:27b (zero-shot)
+  • 100% Perfect Cases (J=1.0): 15/100 (15.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 20/100 (20.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 33/100 (33.0%)
+  • Critical Cases (J<0.5): 32/100 (32.0%)
+  => Total Safe Cases (J>=0.8): 35/100 (35.0%)
+  Listing first 15 critical cases:
+    - case_id: 090G0387 | Jaccard: 0.0104 | Matched Events: 1/49 (Pred: 48)
+    - case_id: 090G0078 | Jaccard: 0.4 | Matched Events: 8/15 (Pred: 13)
+    - case_id: 088G0299 | Jaccard: 0.4118 | Matched Events: 7/12 (Pred: 12)
+    - case_id: 092G0181 | Jaccard: 0.2778 | Matched Events: 5/12 (Pred: 11)
+    - case_id: 091G0041 | Jaccard: 0.2857 | Matched Events: 6/13 (Pred: 14)
+    - case_id: 090G0303 | Jaccard: 0.4 | Matched Events: 12/21 (Pred: 21)
+    - case_id: 088G0216 | Jaccard: 0.3043 | Matched Events: 7/15 (Pred: 15)
+    - case_id: 001G0094 | Jaccard: 0.2727 | Matched Events: 6/14 (Pred: 14)
+    - case_id: 001G0084 | Jaccard: 0.0879 | Matched Events: 8/70 (Pred: 29)
+    - case_id: 001G0060 | Jaccard: 0.4286 | Matched Events: 12/20 (Pred: 20)
+    - case_id: 097G0319 | Jaccard: 0.4 | Matched Events: 12/21 (Pred: 21)
+    - case_id: 000G0268 | Jaccard: 0.4737 | Matched Events: 9/14 (Pred: 14)
+    - case_id: 099G0082 | Jaccard: 0.0 | Matched Events: 0/19 (Pred: 20)
+    - case_id: 001G0471 | Jaccard: 0.1515 | Matched Events: 5/19 (Pred: 19)
+    - case_id: 005G0011 | Jaccard: 0.2941 | Matched Events: 10/22 (Pred: 22)
+    ... and 17 additional critical cases.
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+
+================================================================================
+MODEL EVALUATION - SETTING: RAW (LLM OUTPUT) | INFERENCE: FEW-SHOT
+================================================================================
+Input File:          /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/extractions/extraction_few-shot_2026-08-14_22-05.jsonl
+Gold Standard:       /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/data/gold_standard.json
+Setting:             few-shot
+Prompt File:         event_extraction_v5.txt
+Output File:         /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
+Match Threshold:     0.8
+
+
+>>> RUNNING EVALUATION [RAW (LLM OUTPUT) | FEW-SHOT] FOR: gemma3:27b (100 documents) <<<
+  [OK] Prompt Schema Compliance: completed.
+  [OK] Exact Match Event Jaccard per Case: completed.
+  [OK] Hungarian Algorithm Event Matching: completed.
+
+================================================================================
+GLOBAL EVALUATION SUMMARY [RAW (LLM OUTPUT) | FEW-SHOT]
+================================================================================
+| Model      | Setting   |   Total Docs |   Extracted Events | Schema Valid (%)   |   Exact Jaccard (Mean) | Perfect Cases (%)   | Critical Cases (J<0.5)   |   Hungarian Micro F1 |   Hungarian Macro F1 |
+|:-----------|:----------|-------------:|-------------------:|:-------------------|-----------------------:|:--------------------|:-------------------------|---------------------:|---------------------:|
+| gemma3:27b | few-shot  |          100 |               1971 | 100.0% (1971/1971) |                 0.8905 | 42.0% (42/100)      | 2.0% (2/100)             |               0.9823 |               0.9918 |
+================================================================================
+
+>>> ATTRIBUTE-LEVEL ACCURACY MATRIX (EXACT ATTRIBUTE MATCH) <<<
+
+Model: gemma3:27b (few-shot)
+| Attribute         | Exact Accuracy (%)   | Exact Matches   |
+|:------------------|:---------------------|:----------------|
+| commissions       | 97.56%               | 1920 / 1968     |
+| sede              | 97.66%               | 1922 / 1968     |
+| date              | 98.63%               | 1941 / 1968     |
+| atti_unificati    | 99.34%               | 1955 / 1968     |
+| persons           | 99.49%               | 1958 / 1968     |
+| activity          | 99.75%               | 1963 / 1968     |
+| co_firmatari      | 99.85%               | 1965 / 1968     |
+| chamber           | 99.85%               | 1965 / 1968     |
+| con_modificazioni | 99.95%               | 1967 / 1968     |
+================================================================================
+
+>>> SEMANTIC FIDELITY ANALYSIS (HUNGARIAN ALGORITHM) <<<
+
+Model: gemma3:27b (few-shot) | Similarity Threshold: 0.8
+  • Matched Events:     1966 / 2032 gold (Extracted: 1971)
+  • Micro-Averaged:     Precision: 0.9975 | Recall: 0.9675 | Micro-F1: 0.9823
+  • Macro-Averaged:     Precision: 0.9974 | Recall: 0.9871 | Macro-F1: 0.9918
+  • 100% Semantic Cases: 78/100 (78.0%)
+================================================================================
+
+>>> PROMPT SCHEMA VIOLATION BREAKDOWN BY ATTRIBUTE <<<
+
+Model: gemma3:27b (few-shot)
+  [OK] No schema violations found! All events comply with the prompt schema.
+
+>>> CASES WITH SCHEMA VIOLATIONS (FOR MANUAL AUDIT) <<<
+
+Model: gemma3:27b (few-shot) | (0 cases with errors out of 100)
+  [OK] No case_ids contain schema errors!
+
+>>> CRITICAL CASES LIST (EXACT MATCH JACCARD < 0.5) FOR MANUAL AUDIT <<<
+
+Model: gemma3:27b (few-shot)
+  • 100% Perfect Cases (J=1.0): 42/100 (42.0%)
+  • High-Confidence Cases (0.8<=J<1.0): 37/100 (37.0%)
+  • Medium-Confidence Cases (0.5<=J<0.8): 19/100 (19.0%)
+  • Critical Cases (J<0.5): 2/100 (2.0%)
+  => Total Safe Cases (J>=0.8): 79/100 (79.0%)
+  Listing first 2 critical cases:
+    - case_id: 099G0082 | Jaccard: 0.4074 | Matched Events: 11/19 (Pred: 19)
+    - case_id: 14G00030 | Jaccard: 0.411 | Matched Events: 30/52 (Pred: 51)
+================================================================================
+[SUCCESS] Results saved/updated in: /Users/matilde/Desktop/git/TheItalianLawmakingProcessDataset/pipeline/03_evaluation/results/evaluation_results.json
