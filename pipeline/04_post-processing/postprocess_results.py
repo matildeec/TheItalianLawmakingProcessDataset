@@ -21,7 +21,6 @@ import re
 
 FIELD_MAPPING_TO_ENGLISH = {
     "sequence_id": "sequence_id",
-    "numero_atto": "bill_id",
     "activity": "activity",
     "date": "date",
     "commissions": "commissions",
@@ -73,22 +72,6 @@ TITLES_REGEX = re.compile(
     r'^(?:(?:sen|on)\.|\b(?:senatore|onorevole|ministro\s+della\s+\w+|ministro\s+degli\s+\w+|ministro\s+per\s+\w+|ministro|presidente\s+del\s+consiglio(?:\s+dei\s+ministri)?|presidente)\b)\s*',
     re.IGNORECASE
 )
-
-
-def clean_bill_id(ev: dict) -> str:
-    """
-    Strip superfluous prefixes from the bill number (e.g. "A.S.", "A.C.", "DDL", "d.d.l.")
-    and normalize spaces around hyphens and suffixes (e.g. "2519- bis" -> "2519-bis", "1504/b" -> "1504/B").
-    """
-    num = str(ev.get("numero_atto") or "").strip()
-    if not num:
-        return num
-
-    num_clean = re.sub(r'^(A\.S\.|A\.C\.|DDL|d\.d\.l\.|Atto|n\.)\s*', '', num, flags=re.IGNORECASE).strip()
-    num_clean = re.sub(r'\s*-\s*', '-', num_clean)
-    num_clean = re.sub(r'-\s*(bis|ter|quater)\b', r'-\1', num_clean, flags=re.IGNORECASE)
-    num_clean = re.sub(r'([/-])([a-z])\b', lambda m: m.group(1) + m.group(2).upper(), num_clean)
-    return num_clean
 
 
 def canonicalize_commission_name(c_text: str) -> str:
@@ -184,7 +167,6 @@ def postprocess_event(ev: dict) -> dict:
 
     clean_it = {
         "sequence_id": ev.get("sequence_id"),
-        "numero_atto": clean_bill_id(ev),
         "activity": activity_it,
         "date": str(d).strip() if d is not None else None,
         "commissions": clean_commissions(ev),
