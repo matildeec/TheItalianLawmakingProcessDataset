@@ -1,0 +1,18 @@
+========================================================================
+CRITICAL ERROR FLAGGING REPORT  —  PM4Lawmaking 2.0
+========================================================================
+Run timestamp   : 2026-09-30 15:05:02
+Elapsed         : 3.0s
+Input file      : extraction_few-shot_merged_full.jsonl
+------------------------------------------------------------------------
+Total cases     :   5246
+Clean cases     :   4441  (84.65%)
+Flagged cases   :    805  (15.35%)
+Total CRITICAL  :   2646
+------------------------------------------------------------------------
+CRITICAL anomalies by category:
+  SEQUENCE_DATE_MISMATCH                2408  ████████████████████████████████████████
+  CHRONOLOGY_INVERSION                   230  ███
+  IMPLAUSIBLE_DATE                         5  
+  UNAUTHORIZED_APPROVAL                    3  
+========================================================================
