@@ -230,7 +230,6 @@ def build_registry():
         'chamber',
         'sponsors',
         'title',
-        'law_nature',
         'is_budget_law',
         'is_decree_conversion',
         'is_ratification',
@@ -241,7 +240,13 @@ def build_registry():
         'unified_bills',
         'normattiva_url'
     ]
-    df_combined = df_combined[final_cols]
+    df_combined = df_combined[final_cols].copy()
+
+    # Flags not reliably available for Legislatures IX-XII: leave empty
+    early_leg = df_combined['legislature'].isin([9, 10, 11, 12])
+    for col in ['is_ratification', 'is_decree_conversion', 'is_budget_law', 'confidence_vote_requested']:
+        df_combined[col] = df_combined[col].astype(object)
+        df_combined.loc[early_leg, col] = None
 
     output_path = os.path.join(_REPO_ROOT, 'dataset', 'bill-registry.csv')
     print(f"Writing final bill registry to {output_path} (total rows: {len(df_combined)})...")
