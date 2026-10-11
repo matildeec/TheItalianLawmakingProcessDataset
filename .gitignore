@@ -7,3 +7,7 @@ __pycache__/
 # Runtime inference output (working files from run_extraction)
 pipeline/output/*.jsonl
 !pipeline/output/full_raw_extraction_gemma4.jsonl
+
+# Master bill registry
+dataset/bill-registry.csv
+dataset/bill_registry.csv
