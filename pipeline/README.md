@@ -104,11 +104,11 @@ Applies deterministic sanitization, normalizes procedural fields, runs rule-base
    ```
 
 3. **Master Dataset Export**:
-   - Builds `dataset/bill-registry.csv` (consolidates 44,980 legislative bill initiatives across Legislatures 9–19 with 22 institutional metadata fields).
+   - Builds `dataset/laws_registry.csv` (consolidates enacted laws across Legislatures 9–19 with 22 institutional metadata fields).
    - Builds `dataset/preparatory-work.jsonl` (merges the 5,246 model extractions with the 100 human-annotated Gold Standard bills, applies ontology translation, and appends the `suspicious` flag).
 
    ```bash
-   # Consolidate bill initiatives and legislative metadata into the master registry
+   # Consolidate enacted laws and legislative metadata into the laws registry
    python 04_post-processing/build_master_bill_registry.py
 
    # Build the finalized preparatory works event log

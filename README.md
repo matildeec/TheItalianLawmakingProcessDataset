@@ -8,7 +8,7 @@
 
 The Italian Lawmaking Process Dataset provides a comprehensive, two-layer reconstruction of the Italian legislative process across four decades (Legislatures IX to XIX, 1987–2026). The dataset is published under the `/dataset/` directory and consists of two relationally coupled resources:
 
-1. **The Master Bill Registry (`dataset/bill-registry.csv`)**: Macro-level tabular registry capturing 44,980 legislative bill initiatives introduced in the Italian Parliament, enriched with 22 institutional, political, and procedural attributes.
+1. **The Laws Registry (`dataset/laws_registry.csv`)**: Macro-level tabular registry capturing all 5,346 enacted laws (5,393 records including consolidated initiatives) promulgated in the Italian Parliament across Legislatures IX to XIX, enriched with 22 institutional, political, and procedural attributes.
 2. **The Procedural Event Log (`dataset/preparatory-work.jsonl`)**: Micro-level, highly granular event log containing 101,413 chronologically ordered procedural events reconstructed from the preparatory works (*lavori preparatori*) of all 5,346 enacted laws promulgated between 1987 and 2026.
 
 ---
@@ -19,7 +19,7 @@ The Italian Lawmaking Process Dataset provides a comprehensive, two-layer recons
 TheItalianLawmakingProcessDataset/
 ├── README.md               # Master documentation, data dictionary, and quickstart guide
 ├── dataset/                # Published dataset distribution files
-│   ├── bill-registry.csv   # Layer 1: Macro-level master registry (44,980 bills / enacted laws)
+│   ├── laws_registry.csv   # Layer 1: Macro-level registry of enacted laws (5,346 laws / 5,393 records)
 │   └── preparatory-work.jsonl # Layer 2: Micro-level procedural event log (5,346 laws, 101,413 events)
 └── pipeline/               # End-to-end extraction, evaluation, and processing code
     ├── README.md           # Reproduction protocol and CLI execution guide
@@ -38,13 +38,13 @@ TheItalianLawmakingProcessDataset/
 
 The two resources are linked via the official Gazette Identifier:
 * **Join Key**: `gazette_id` (e.g., `26G00136`, `088G0238`)
-* **Coverage**: Exactly 5,346 out of 5,346 laws in `preparatory-work.jsonl` possess a corresponding record in `bill-registry.csv` (100% relational integrity). Non-enacted proposals in `bill-registry.csv` have `gazette_id` set to `null`.
+* **Coverage**: Exactly 5,346 out of 5,346 laws in `preparatory-work.jsonl` possess a corresponding record in `laws_registry.csv` (100% relational integrity).
 
 ---
 
 ## Data Dictionary
 
-### 1. Master Bill Registry (`dataset/bill-registry.csv`)
+### 1. Laws Registry (`dataset/laws_registry.csv`)
 
 | Column | Type | Description |
 | :--- | :--- | :--- |
@@ -87,7 +87,7 @@ Each line in `preparatory-work.jsonl` represents an enacted law and contains its
 #### Top-Level Law Properties:
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `case_id` | String | Unique Gazette editorial code matching `gazette_id` in `bill-registry.csv`. |
+| `case_id` | String | Unique Gazette editorial code matching `gazette_id` in `laws_registry.csv`. |
 | `input_text` | String | Unstructured legal summary of preparatory proceedings (*lavori preparatori*). |
 | `suspicious` | Boolean | Quality assurance flag: `true` if rule-based error detection identified critical temporal or procedural inversions, `false` otherwise. |
 | `events` | List[Object] | Ordered array of granular parliamentary events. |
@@ -114,10 +114,10 @@ Each line in `preparatory-work.jsonl` represents an enacted law and contains its
 import json
 import pandas as pd
 
-# 1. Load Master Bill Registry
-df_registry = pd.read_csv("dataset/bill-registry.csv", low_memory=False)
-print(f"Total bill initiatives: {len(df_registry)}")
-print(f"Total enacted laws: {df_registry['gazette_id'].notna().sum()}")
+# 1. Load Laws Registry
+df_registry = pd.read_csv("dataset/laws_registry.csv", low_memory=False)
+print(f"Total registry records: {len(df_registry)}")
+print(f"Total unique enacted laws: {df_registry['gazette_id'].nunique()}")
 
 # 2. Load Process Event Log
 laws_events = []
