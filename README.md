@@ -1,15 +1,11 @@
 # The Italian Lawmaking Process Dataset
 
-## Abstract
-
-<!-- To be completed with the publication abstract. -->
-
 ## Dataset Overview
 
-The Italian Lawmaking Process Dataset provides a comprehensive, multi-layer reconstruction of the Italian legislative process across four decades (Legislatures IX to XIX, 1987–2026). The dataset is published under the `/dataset/` directory and consists of three relationally coupled resources:
+The Italian Lawmaking Process Dataset provides a comprehensive, multi-layer reconstruction of the Italian legislative process across four decades (Legislatures IX to XIX, 1985–2026). The dataset is published under the `/dataset/` directory and consists of three relationally coupled resources:
 
 1. **The Laws Registry (`dataset/laws_registry.csv`)**: Macro-level tabular registry capturing all 5,346 enacted laws (5,393 records including consolidated initiatives) promulgated in the Italian Parliament across Legislatures IX to XIX, enriched with 22 institutional, political, and procedural attributes.
-2. **The Procedural Event Log (`dataset/preparatory_work.jsonl`)**: Micro-level, highly granular event log containing 101,413 chronologically ordered procedural events reconstructed from the preparatory works (*lavori preparatori*) of all 5,346 enacted laws promulgated between 1987 and 2026.
+2. **The Procedural Event Log (`dataset/preparatory_work.jsonl`)**: Micro-level, highly granular event log containing 101,413 chronologically ordered procedural events reconstructed from the preparatory works (*lavori preparatori*) of all 5,346 enacted laws promulgated between 1985 and 2026.
 3. **The Full Statute Texts (`dataset/full_texts/`)**: Raw text corpus containing the complete legal texts of all 5,346 enacted laws stored as individual UTF-8 text files named after their unique statutory identifier (e.g., `26G00136.txt`).
 
 ---
@@ -52,8 +48,6 @@ The two resources are linked via a common law identifier based on the official G
 | Column | Type | Description |
 | :--- | :--- | :--- |
 | `law_id` | String / Null | Common law identifier based on the official editorial code in the Official Gazette / Normattiva (e.g., `26G00136`). Join key to `preparatory_work.jsonl`. |
-| `bill_id` | String / Null | Formal parliamentary act designation (e.g., `S.1891-B`, `C.1704`). |
-| `internal_id` | Integer / Null | Original numeric identifier from the parliamentary database. |
 | `law_number` | String / Null | Formal statute number (e.g., `120/2026`, `129/2004`). |
 | `legislature` | Integer | Legislature number in Arabic numerals (`9` to `19`). |
 | `promulgation_date` | String / Null | Date of presidential enactment in ISO 8601 format (`YYYY-MM-DD`). |
@@ -149,19 +143,6 @@ for ev in sample_case["events"][:3]:
 For instructions on executing or reproducing the computational extraction and evaluation pipeline, refer to [`pipeline/README.md`](pipeline/README.md).
 
 ---
-
-## Citation
-
-<!-- To be completed upon publication. -->
-
-```bibtex
-@article{italian_lawmaking_dataset_2026,
-  title={The Italian Lawmaking Process Dataset},
-  author={},
-  journal={},
-  year={2026}
-}
-```
 
 ## License
 
