@@ -2,7 +2,7 @@
 
 This standalone module performs automated quality audits on extracted legislative event logs by detecting **critical procedural and chronological anomalies**.
 
-The anomalies detected by this engine are directly propagated as a quality flag (`suspicious: true/false`) in the final distributed dataset (`dataset/preparatory-work.jsonl`).
+The anomalies detected by this engine are directly propagated as a quality flag (`suspicious: true/false`) in the final distributed dataset (`dataset/preparatory_work.jsonl`).
 
 ---
 
@@ -72,4 +72,4 @@ python flag.py --input /path/to/any_extraction.jsonl
 
 ## Downstream Dataset Integration
 
-The output file `results/flagged_cases.jsonl` serves as the quality index for `pipeline/04_post-processing/build_preparatory_work.py`. Any bill whose `case_id` appears in `flagged_cases.jsonl` is assigned `"suspicious": true` in `dataset/preparatory-work.jsonl`, providing end-users with full transparency regarding potential chronological or procedural parsing irregularities.
+The output file `results/flagged_cases.jsonl` serves as the quality index for `pipeline/04_post-processing/build_preparatory_work.py`. Any bill whose `case_id` appears in `flagged_cases.jsonl` is assigned `"suspicious": true` in `dataset/preparatory_work.jsonl`, providing end-users with full transparency regarding potential chronological or procedural parsing irregularities.

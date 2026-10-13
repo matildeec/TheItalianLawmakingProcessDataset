@@ -9,7 +9,7 @@
 The Italian Lawmaking Process Dataset provides a comprehensive, two-layer reconstruction of the Italian legislative process across four decades (Legislatures IX to XIX, 1987–2026). The dataset is published under the `/dataset/` directory and consists of two relationally coupled resources:
 
 1. **The Laws Registry (`dataset/laws_registry.csv`)**: Macro-level tabular registry capturing all 5,346 enacted laws (5,393 records including consolidated initiatives) promulgated in the Italian Parliament across Legislatures IX to XIX, enriched with 22 institutional, political, and procedural attributes.
-2. **The Procedural Event Log (`dataset/preparatory-work.jsonl`)**: Micro-level, highly granular event log containing 101,413 chronologically ordered procedural events reconstructed from the preparatory works (*lavori preparatori*) of all 5,346 enacted laws promulgated between 1987 and 2026.
+2. **The Procedural Event Log (`dataset/preparatory_work.jsonl`)**: Micro-level, highly granular event log containing 101,413 chronologically ordered procedural events reconstructed from the preparatory works (*lavori preparatori*) of all 5,346 enacted laws promulgated between 1987 and 2026.
 
 ---
 
@@ -20,7 +20,7 @@ TheItalianLawmakingProcessDataset/
 ├── README.md               # Master documentation, data dictionary, and quickstart guide
 ├── dataset/                # Published dataset distribution files
 │   ├── laws_registry.csv   # Layer 1: Macro-level registry of enacted laws (5,346 laws / 5,393 records)
-│   └── preparatory-work.jsonl # Layer 2: Micro-level procedural event log (5,346 laws, 101,413 events)
+│   └── preparatory_work.jsonl # Layer 2: Micro-level procedural event log (5,346 laws, 101,413 events)
 └── pipeline/               # End-to-end extraction, evaluation, and processing code
     ├── README.md           # Reproduction protocol and CLI execution guide
     ├── requirements.txt    # Python dependencies for the pipeline
@@ -39,7 +39,7 @@ TheItalianLawmakingProcessDataset/
 The two resources are linked via a common law identifier based on the official Gazette editorial code:
 
 * **Join Key**: `law_id` (e.g., `26G00136`, `088G0238`)
-* **Coverage**: Exactly 5,346 out of 5,346 laws in `preparatory-work.jsonl` possess a corresponding record in `laws_registry.csv` (100% relational integrity).
+* **Coverage**: Exactly 5,346 out of 5,346 laws in `preparatory_work.jsonl` possess a corresponding record in `laws_registry.csv` (100% relational integrity).
 
 ---
 
@@ -49,7 +49,7 @@ The two resources are linked via a common law identifier based on the official G
 
 | Column | Type | Description |
 | :--- | :--- | :--- |
-| `law_id` | String / Null | Common law identifier based on the official editorial code in the Official Gazette / Normattiva (e.g., `26G00136`). Join key to `preparatory-work.jsonl`. |
+| `law_id` | String / Null | Common law identifier based on the official editorial code in the Official Gazette / Normattiva (e.g., `26G00136`). Join key to `preparatory_work.jsonl`. |
 | `bill_id` | String / Null | Formal parliamentary act designation (e.g., `S.1891-B`, `C.1704`). |
 | `internal_id` | Integer / Null | Original numeric identifier from the parliamentary database. |
 | `law_number` | String / Null | Formal statute number (e.g., `120/2026`, `129/2004`). |
@@ -72,9 +72,9 @@ The two resources are linked via a common law identifier based on the official G
 | `unified_bills` | String / Null | Act identifier(s) of bills consolidated into the unified text. |
 | `normattiva_url` | String / Null | Canonical hyperlink to the full legal text on the official Normattiva portal. |
 
-### 2. Procedural Event Log (`dataset/preparatory-work.jsonl`)
+### 2. Procedural Event Log (`dataset/preparatory_work.jsonl`)
 
-Each line in `preparatory-work.jsonl` represents an enacted law and contains its raw preparatory text, a quality audit flag, and the chronologically ordered procedural event sequence:
+Each line in `preparatory_work.jsonl` represents an enacted law and contains its raw preparatory text, a quality audit flag, and the chronologically ordered procedural event sequence:
 
 ```json
 {
@@ -122,7 +122,7 @@ print(f"Total unique enacted laws: {df_registry['law_id'].nunique()}")
 
 # 2. Load Process Event Log
 laws_events = []
-with open("dataset/preparatory-work.jsonl", "r", encoding="utf-8") as f:
+with open("dataset/preparatory_work.jsonl", "r", encoding="utf-8") as f:
     for line in f:
         laws_events.append(json.loads(line))
 

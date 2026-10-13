@@ -1,7 +1,7 @@
 """
 build_preparatory_work.py
 
-Constructs the standardized dataset/preparatory-work.jsonl:
+Constructs the standardized dataset/preparatory_work.jsonl:
 1. Merges 5,246 LLM extraction cases (pipeline/output/full_raw_extraction_gemma4.jsonl)
    with the 100 Gold Standard cases (pipeline/data/gold_standard.json + pipeline/data/val_sample_100.csv)
    for a total of exactly 5,346 laws.
@@ -63,7 +63,7 @@ def build_dataset():
 
     print(f"Loaded {len(gold_cases)} gold standard cases.")
 
-    output_path = os.path.join(_REPO_ROOT, 'dataset', 'preparatory-work.jsonl')
+    output_path = os.path.join(_REPO_ROOT, 'dataset', 'preparatory_work.jsonl')
     print(f"Writing to {output_path}...")
     
     written_cases = set()
