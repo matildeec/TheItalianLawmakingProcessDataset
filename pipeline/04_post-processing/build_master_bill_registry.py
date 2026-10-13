@@ -146,9 +146,7 @@ def build_registry():
     df_reg['is_decree_conversion'] = False
     df_ratification = False
     df_reg['is_ratification'] = False
-    df_reg['confidence_vote_requested'] = False
     df_reg['confidence_vote_granted'] = False
-    df_reg['confidence_vote_denied'] = False
     df_reg['normattiva_url'] = None
 
     matched_laws = set()
@@ -165,9 +163,7 @@ def build_registry():
             df_reg.at[idx, 'is_budget_law'] = bool(m.get('is_finanziaria', False))
             df_reg.at[idx, 'is_decree_conversion'] = bool(m.get('is_conversione_dl', False))
             df_reg.at[idx, 'is_ratification'] = bool(m.get('is_ratifica', False))
-            df_reg.at[idx, 'confidence_vote_requested'] = bool(m.get('fiducia_richiesta', False))
             df_reg.at[idx, 'confidence_vote_granted'] = bool(m.get('fiducia_accordata', False))
-            df_reg.at[idx, 'confidence_vote_denied'] = bool(m.get('fiducia_negata', False))
             df_reg.at[idx, 'normattiva_url'] = m.get('full_text_url')
 
     print(f"Laws matched in existing bill registry: {len(matched_laws)}")
@@ -205,9 +201,7 @@ def build_registry():
             'is_budget_law': bool(m.get('is_finanziaria', False)),
             'is_decree_conversion': bool(m.get('is_conversione_dl', False)),
             'is_ratification': bool(m.get('is_ratifica', False)),
-            'confidence_vote_requested': bool(m.get('fiducia_richiesta', False)),
             'confidence_vote_granted': bool(m.get('fiducia_accordata', False)),
-            'confidence_vote_denied': bool(m.get('fiducia_negata', False)),
             'is_merged': False,
             'unified_bills': None,
             'normattiva_url': m.get('full_text_url')
@@ -233,9 +227,7 @@ def build_registry():
         'is_budget_law',
         'is_decree_conversion',
         'is_ratification',
-        'confidence_vote_requested',
         'confidence_vote_granted',
-        'confidence_vote_denied',
         'is_merged',
         'unified_bills',
         'normattiva_url'
@@ -244,7 +236,7 @@ def build_registry():
 
     # Flags not reliably available for Legislatures IX-XII: leave empty
     early_leg = df_combined['legislature'].isin([9, 10, 11, 12])
-    for col in ['is_ratification', 'is_decree_conversion', 'is_budget_law', 'confidence_vote_requested']:
+    for col in ['is_ratification', 'is_decree_conversion', 'is_budget_law', 'confidence_vote_granted']:
         df_combined[col] = df_combined[col].astype(object)
         df_combined.loc[early_leg, col] = None
 

@@ -4,7 +4,7 @@
 
 The Italian Lawmaking Process Dataset provides a comprehensive, multi-layer reconstruction of the Italian legislative process across four decades (Legislatures IX to XIX, 1985–2026). The dataset is published under the `/dataset/` directory and consists of three relationally coupled resources:
 
-1. **The Laws Registry (`dataset/laws_registry.csv`)**: Macro-level tabular registry containing one record for each of the 5,346 enacted laws promulgated in the Italian Parliament across Legislatures IX to XIX, with 19 institutional, political, and procedural attributes.
+1. **The Laws Registry (`dataset/laws_registry.csv`)**: Macro-level tabular registry containing one record for each of the 5,346 enacted laws promulgated in the Italian Parliament across Legislatures IX to XIX, with 17 institutional, political, and procedural attributes.
 2. **The Procedural Event Log (`dataset/preparatory_work.jsonl`)**: Micro-level, highly granular event log containing 101,413 chronologically ordered procedural events reconstructed from the preparatory works (*lavori preparatori*) of all 5,346 enacted laws promulgated between 1985 and 2026.
 3. **The Full Statute Texts (`dataset/full_texts/`)**: Raw text corpus containing the complete legal texts of all 5,346 enacted laws stored as individual UTF-8 text files named after their unique statutory identifier (e.g., `26G00136.txt`).
 
@@ -61,9 +61,7 @@ The two resources are linked via a common law identifier based on the official G
 | `is_budget_law` | Boolean | `true` if the statute is an annual financial or budget law (*legge finanziaria / bilancio*). |
 | `is_decree_conversion` | Boolean | `true` if the statute converts an urgent government decree-law into ordinary law. |
 | `is_ratification` | Boolean | `true` if the statute ratifies an international treaty or bilateral agreement. |
-| `confidence_vote_requested` | Boolean | `true` if the executive called a vote of confidence (*questione di fiducia*) during debate. |
-| `confidence_vote_granted` | Boolean | `true` if the confidence vote passed successfully. |
-| `confidence_vote_denied` | Boolean | `true` if the confidence vote was defeated. |
+| `confidence_vote_granted` | Boolean / Null | `true` if the government confidence vote passed during parliamentary consideration (tracked for Legislatures XIII–XIX; `null` for early historical archives IX–XII). |
 | `is_merged` | Boolean | `true` if the bill was formally consolidated into a unified legislative text (*testo unificato*). |
 | `unified_bills` | String / Null | Act identifier(s) of bills consolidated into the unified text. |
 | `normattiva_url` | String / Null | Canonical hyperlink to the full legal text on the official Normattiva portal. |
