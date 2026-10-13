@@ -36,8 +36,9 @@ TheItalianLawmakingProcessDataset/
 
 ## Relational Joining: Coupling Layer 1 and Layer 2
 
-The two resources are linked via the official Gazette Identifier:
-* **Join Key**: `gazette_id` (e.g., `26G00136`, `088G0238`)
+The two resources are linked via a common law identifier based on the official Gazette editorial code:
+
+* **Join Key**: `law_id` (e.g., `26G00136`, `088G0238`)
 * **Coverage**: Exactly 5,346 out of 5,346 laws in `preparatory-work.jsonl` possess a corresponding record in `laws_registry.csv` (100% relational integrity).
 
 ---
@@ -48,7 +49,7 @@ The two resources are linked via the official Gazette Identifier:
 
 | Column | Type | Description |
 | :--- | :--- | :--- |
-| `gazette_id` | String / Null | Official editorial code in the Official Gazette / Normattiva (e.g., `26G00136`). Foreign key to `preparatory-work.jsonl`. |
+| `law_id` | String / Null | Common law identifier based on the official editorial code in the Official Gazette / Normattiva (e.g., `26G00136`). Join key to `preparatory-work.jsonl`. |
 | `bill_id` | String / Null | Formal parliamentary act designation (e.g., `S.1891-B`, `C.1704`). |
 | `internal_id` | Integer / Null | Original numeric identifier from the parliamentary database. |
 | `law_number` | String / Null | Formal statute number (e.g., `120/2026`, `129/2004`). |
@@ -77,7 +78,7 @@ Each line in `preparatory-work.jsonl` represents an enacted law and contains its
 
 ```json
 {
-  "case_id": "26G00136",
+  "law_id": "26G00136",
   "input_text": "Camera dei deputati (atto n. 1704): ...",
   "suspicious": false,
   "events": [ ... ]
@@ -87,7 +88,7 @@ Each line in `preparatory-work.jsonl` represents an enacted law and contains its
 #### Top-Level Law Properties:
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `case_id` | String | Unique Gazette editorial code matching `gazette_id` in `laws_registry.csv`. |
+| `law_id` | String | Common law identifier based on the unique Gazette editorial code, matching `law_id` in `laws_registry.csv`. |
 | `input_text` | String | Unstructured legal summary of preparatory proceedings (*lavori preparatori*). |
 | `suspicious` | Boolean | Quality assurance flag: `true` if rule-based error detection identified critical temporal or procedural inversions, `false` otherwise. |
 | `events` | List[Object] | Ordered array of granular parliamentary events. |
@@ -117,7 +118,7 @@ import pandas as pd
 # 1. Load Laws Registry
 df_registry = pd.read_csv("dataset/laws_registry.csv", low_memory=False)
 print(f"Total registry records: {len(df_registry)}")
-print(f"Total unique enacted laws: {df_registry['gazette_id'].nunique()}")
+print(f"Total unique enacted laws: {df_registry['law_id'].nunique()}")
 
 # 2. Load Process Event Log
 laws_events = []
@@ -129,8 +130,8 @@ print(f"Total enacted process logs: {len(laws_events)}")
 
 # 3. Relational Join: inspect events for a given enacted law
 sample_case = laws_events[0]
-sample_id = sample_case["case_id"]
-registry_row = df_registry[df_registry["gazette_id"] == sample_id].iloc[0]
+sample_id = sample_case["law_id"]
+registry_row = df_registry[df_registry["law_id"] == sample_id].iloc[0]
 
 print(f"\nLaw {registry_row['law_number']} ({registry_row['title']})")
 print(f"Promulgated on: {registry_row['promulgation_date']}, Articles: {registry_row['num_articles']}")
