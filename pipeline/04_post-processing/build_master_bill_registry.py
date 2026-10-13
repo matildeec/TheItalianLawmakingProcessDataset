@@ -203,7 +203,6 @@ def build_registry():
             'is_ratification': bool(m.get('is_ratifica', False)),
             'confidence_vote_granted': bool(m.get('fiducia_accordata', False)),
             'is_merged': False,
-            'unified_bills': None,
             'normattiva_url': m.get('full_text_url')
         }
         new_rows.append(row)
@@ -229,7 +228,6 @@ def build_registry():
         'is_ratification',
         'confidence_vote_granted',
         'is_merged',
-        'unified_bills',
         'normattiva_url'
     ]
     df_combined = df_combined[final_cols].copy()
@@ -239,6 +237,11 @@ def build_registry():
     for col in ['is_ratification', 'is_decree_conversion', 'is_budget_law', 'confidence_vote_granted']:
         df_combined[col] = df_combined[col].astype(object)
         df_combined.loc[early_leg, col] = None
+
+    # Institutional bill merging flag is_merged only tracked from Legislature XIV onward
+    early_merged = df_combined['legislature'].isin([9, 10, 11, 12, 13])
+    df_combined['is_merged'] = df_combined['is_merged'].astype(object)
+    df_combined.loc[early_merged, 'is_merged'] = None
 
     output_path = os.path.join(_REPO_ROOT, 'dataset', 'bill-registry.csv')
     print(f"Writing final bill registry to {output_path} (total rows: {len(df_combined)})...")
