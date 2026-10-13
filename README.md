@@ -4,7 +4,7 @@
 
 The Italian Lawmaking Process Dataset provides a comprehensive, multi-layer reconstruction of the Italian legislative process across four decades (Legislatures IX to XIX, 1985–2026). The dataset is published under the `/dataset/` directory and consists of three relationally coupled resources:
 
-1. **The Laws Registry (`dataset/laws_registry.csv`)**: Macro-level tabular registry capturing all 5,346 enacted laws (5,393 records including consolidated initiatives) promulgated in the Italian Parliament across Legislatures IX to XIX, enriched with 22 institutional, political, and procedural attributes.
+1. **The Laws Registry (`dataset/laws_registry.csv`)**: Macro-level tabular registry containing one record for each of the 5,346 enacted laws promulgated in the Italian Parliament across Legislatures IX to XIX, with 19 institutional, political, and procedural attributes.
 2. **The Procedural Event Log (`dataset/preparatory_work.jsonl`)**: Micro-level, highly granular event log containing 101,413 chronologically ordered procedural events reconstructed from the preparatory works (*lavori preparatori*) of all 5,346 enacted laws promulgated between 1985 and 2026.
 3. **The Full Statute Texts (`dataset/full_texts/`)**: Raw text corpus containing the complete legal texts of all 5,346 enacted laws stored as individual UTF-8 text files named after their unique statutory identifier (e.g., `26G00136.txt`).
 
@@ -16,7 +16,7 @@ The Italian Lawmaking Process Dataset provides a comprehensive, multi-layer reco
 TheItalianLawmakingProcessDataset/
 ├── README.md               # Master documentation, data dictionary, and quickstart guide
 ├── dataset/                # Published dataset distribution files
-│   ├── laws_registry.csv   # Layer 1: Macro-level registry of enacted laws (5,346 laws / 5,393 records)
+│   ├── laws_registry.csv   # Layer 1: Macro-level registry of enacted laws (5,346 laws / 5,346 records)
 │   ├── preparatory_work.jsonl # Layer 2: Micro-level procedural event log (5,346 laws, 101,413 events)
 │   └── full_texts/         # Layer 3: Full legal text corpus of enacted statutes (5,346 .txt files)
 └── pipeline/               # End-to-end extraction, evaluation, and processing code
@@ -37,6 +37,7 @@ TheItalianLawmakingProcessDataset/
 The two resources are linked via a common law identifier based on the official Gazette editorial code:
 
 * **Join Key**: `law_id` (e.g., `26G00136`, `088G0238`)
+* **Cardinality**: One-to-one. `law_id` is unique in both resources.
 * **Coverage**: Exactly 5,346 out of 5,346 laws in `preparatory_work.jsonl` possess a corresponding record in `laws_registry.csv` (100% relational integrity).
 
 ---
@@ -47,7 +48,7 @@ The two resources are linked via a common law identifier based on the official G
 
 | Column | Type | Description |
 | :--- | :--- | :--- |
-| `law_id` | String / Null | Common law identifier based on the official editorial code in the Official Gazette / Normattiva (e.g., `26G00136`). Join key to `preparatory_work.jsonl`. |
+| `law_id` | String | Unique law identifier based on the official editorial code in the Official Gazette / Normattiva (e.g., `26G00136`). Primary key and join key to `preparatory_work.jsonl`. |
 | `law_number` | String / Null | Formal statute number (e.g., `120/2026`, `129/2004`). |
 | `legislature` | Integer | Legislature number in Arabic numerals (`9` to `19`). |
 | `promulgation_date` | String / Null | Date of presidential enactment in ISO 8601 format (`YYYY-MM-DD`). |
@@ -56,8 +57,7 @@ The two resources are linked via a common law identifier based on the official G
 | `initiating_chamber` | String / Null | Chamber where the bill was initially introduced (`S` for Senate, `C` for Chamber of Deputies). |
 | `chamber` | String / Null | Parliamentary chamber (`S` or `C`). |
 | `sponsors` | String / Null | Primary bill sponsor(s), cabinet ministers, or submitting institutions. |
-| `title` | String | Official title and subject matter of the legislative bill. |
-| `law_nature` | String / Null | Juridical classification: `Ordinary`, `Decree-Law Conversion`, `Ratification`, `State Budget`, `Constitutional`. |
+| `title` | String | Official title and subject matter of the enacted law. |
 | `is_budget_law` | Boolean | `true` if the statute is an annual financial or budget law (*legge finanziaria / bilancio*). |
 | `is_decree_conversion` | Boolean | `true` if the statute converts an urgent government decree-law into ordinary law. |
 | `is_ratification` | Boolean | `true` if the statute ratifies an international treaty or bilateral agreement. |
