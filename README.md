@@ -1,5 +1,7 @@
 # The Italian Lawmaking Process Dataset
 
+This dataset is described in the paper [*The Italian lawmaking process: a unified and structured dataset*](https://arxiv.org/abs/2610.23741) (Contestabile, Ferrara, Parrillo, Emer, Vandin; arXiv:2610.23741). See [Citation](#citation).
+
 ## Dataset Overview
 
 The Italian Lawmaking Process Dataset provides a comprehensive, multi-layer reconstruction of the Italian legislative process across four decades (Legislatures IX to XIX, 1985–2026). The dataset is published under the `/dataset/` directory and consists of three relationally coupled resources:
@@ -138,6 +140,23 @@ for ev in sample_case["events"][:3]:
 ```
 
 For instructions on executing or reproducing the computational extraction and evaluation pipeline, refer to [`pipeline/README.md`](pipeline/README.md).
+
+---
+
+## Citation
+
+If you use this dataset, please cite the paper:
+
+```bibtex
+@misc{contestabile2026italian,
+  title         = {The Italian lawmaking process: a unified and structured dataset},
+  author        = {Contestabile, Matilde and Ferrara, Chiara and Parrillo, Giovanni and Emer, Lorenzo and Vandin, Andrea},
+  year          = {2026},
+  eprint        = {2610.23741},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2610.23741}
+}
+```
 
 ---
 

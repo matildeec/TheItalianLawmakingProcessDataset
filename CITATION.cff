@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite the paper below."
+title: "The Italian Lawmaking Process Dataset"
+type: dataset
+license: CC-BY-4.0
+authors:
+  - family-names: Contestabile
+    given-names: Matilde
+  - family-names: Ferrara
+    given-names: Chiara
+  - family-names: Parrillo
+    given-names: Giovanni
+  - family-names: Emer
+    given-names: Lorenzo
+  - family-names: Vandin
+    given-names: Andrea
+preferred-citation:
+  type: article
+  title: "The Italian lawmaking process: a unified and structured dataset"
+  authors:
+    - family-names: Contestabile
+      given-names: Matilde
+    - family-names: Ferrara
+      given-names: Chiara
+    - family-names: Parrillo
+      given-names: Giovanni
+    - family-names: Emer
+      given-names: Lorenzo
+    - family-names: Vandin
+      given-names: Andrea
+  year: 2026
+  journal: "arXiv preprint arXiv:2610.23741"
+  url: "https://arxiv.org/abs/2610.23741"
